@@ -66,7 +66,6 @@ bool Identifier::isValid(quint64 value, const Account &account)
     {
         return false;
     }
-    constexpr auto VALID_DIGITS = 3;
     switch(account)
     {
     case Account::Loan:
@@ -84,6 +83,37 @@ bool Identifier::isValid(quint64 value, const Account &account)
     default:
     {
         return false;
+    }
+    }
+}
+
+#include <QRandomGenerator>
+
+quint64 Identifier::generateID(const Account &account)
+{
+    auto generator = QRandomGenerator::global();
+    int number = generator->bounded(int(std::pow(10, GENERAL_DIGITS - 1)), int(std::pow(10, GENERAL_DIGITS) - 1));
+    number *= std::pow(10, VALID_DIGITS);
+    switch(account)
+    {
+    case Account::Deposit:
+    {
+        number += DEPOSIT_ID;
+        return number;
+    }
+    case Account::Loan:
+    {
+        number += LOAN_ID;
+        return number;
+    }
+    case Account::Transaction:
+    {
+        number += TRANSACTION_ID;
+        return number;
+    }
+    default:
+    {
+        return INVALID_ID;
     }
     }
 }
