@@ -13,7 +13,6 @@ constexpr auto GENERAL_DIGITS = 4;
 
 constexpr auto INVALID_ID = -1;
 
-
 enum class Account {None = 0, Deposit, Loan, Transaction};
 
 namespace Storage
@@ -28,9 +27,10 @@ namespace Storage
 
 namespace Identifier
 {
-
+    quint64 createAdminID();
+    quint64 createCustomerID();
     bool isValid(quint64 value);
-    quint64 generateID(const Account &account);
+    quint64 createAccountID(const Account &account);
     bool isValid(quint64 value, const Account &account);
 }
 

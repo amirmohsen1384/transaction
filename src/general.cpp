@@ -89,7 +89,7 @@ bool Identifier::isValid(quint64 value, const Account &account)
 
 #include <QRandomGenerator>
 
-quint64 Identifier::generateID(const Account &account)
+quint64 Identifier::createAccountID(const Account &account)
 {
     auto generator = QRandomGenerator::global();
     int number = generator->bounded(int(std::pow(10, GENERAL_DIGITS - 1)), int(std::pow(10, GENERAL_DIGITS) - 1));
@@ -116,4 +116,16 @@ quint64 Identifier::generateID(const Account &account)
         return INVALID_ID;
     }
     }
+}
+
+quint64 Identifier::createAdminID()
+{
+    auto generator = QRandomGenerator::global();
+    return generator->generate64();
+}
+
+quint64 Identifier::createCustomerID()
+{
+    auto generator = QRandomGenerator::global();
+    return generator->generate64();
 }
