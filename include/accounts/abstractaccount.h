@@ -9,18 +9,7 @@ class AbstractAccount : Entity
 public:
     enum Role
     {
-        Cvv2Role,
-        OwnerRole,
-        ProfitRole,
-        BalanceRole,
-        CardNumberRole,
-        AccountKeyRole,
-        ShabaNumberRole,
-        LastCashMovedRole,
-        ExpirationDateRole,
-        PrimaryPasswordRole,
-        SecondaryPasswordRole,
-        TransferredBalanceRole,
+        KeyRole = Qt::UserRole + 1
     };
 
     AbstractAccount();
