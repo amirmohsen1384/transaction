@@ -10,12 +10,15 @@ HEADERS += \
     include/accounts/transactionaccount.h \
     include/core/cashtransaction.h \
     include/core/errors.h \
+    include/delegates/accountdelegate.h \
     include/entity.h \
     include/general.h \
     include/accounts/abstractaccount.h \
+    include/models/accountlistmodel.h \
     include/users/admin.h \
     include/users/customer.h \
-    include/users/user.h
+    include/users/user.h \
+    include/widgets/transferpanel.h
 
 
 SOURCES += \
@@ -26,12 +29,18 @@ SOURCES += \
     src/accounts/loanaccount.cpp \
     src/accounts/transactionaccount.cpp \
     src/core/cashtransaction.cpp \
+    src/delegates/accountdelegate.cpp \
     src/entity.cpp \
     src/general.cpp \
+    src/models/accountlistmodel.cpp \
     src/users/admin.cpp \
     src/users/customer.cpp \
-    src/users/user.cpp
+    src/users/user.cpp \
+    src/widgets/transferpanel.cpp
 
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+FORMS += \
+    ui/widgets/transferpanel.ui
