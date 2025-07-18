@@ -32,6 +32,9 @@ public:
     int getSecondaryPassword() const;
     void setSecondaryPassword(int password);
 
+    quint64 getTransferredBalance() const;
+    void setTransferredBalance(quint64 value);
+
     QDateTime getLastCashMoved() const;
     void setLastCashMoved(const QDateTime &dateTime);
 
@@ -42,6 +45,7 @@ public:
     virtual float profit() const = 0;
 
 protected:
+    quint64 transferredBalance = 0;
     int secondaryPassword = 0;
     QDateTime lastCashMoved;
     int primaryPassword = 0;

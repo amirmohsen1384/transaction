@@ -78,6 +78,16 @@ void AbstractAccount::setSecondaryPassword(int password)
     secondaryPassword = password;
 }
 
+quint64 AbstractAccount::getTransferredBalance() const
+{
+    return transferredBalance;
+}
+
+void AbstractAccount::setTransferredBalance(quint64 value)
+{
+    transferredBalance = value;
+}
+
 int AbstractAccount::getPrimaryPassword() const
 {
     return primaryPassword;
@@ -94,6 +104,7 @@ QDataStream& operator<<(QDataStream &stream, const AbstractAccount &data)
     stream << data.balance << data.cvv2 << data.owner;
     stream << data.expirationDate << data.lastCashMoved;
     stream << data.primaryPassword << data.secondaryPassword;
+    stream << data.transferredBalance;
     return stream;
 }
 
@@ -103,5 +114,6 @@ QDataStream& operator>>(QDataStream &stream, AbstractAccount &data)
     stream >> data.balance >> data.cvv2 >> data.owner;
     stream >> data.expirationDate >> data.lastCashMoved;
     stream >> data.primaryPassword >> data.secondaryPassword;
+    stream >> data.transferredBalance;
     return stream;
 }
