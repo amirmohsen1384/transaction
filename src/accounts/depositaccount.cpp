@@ -2,7 +2,7 @@
 
 constexpr auto suffix = "dpf";
 
-DepositAccount::DepositAccount() {}
+DepositAccount::DepositAccount() : AbstractAccount() {}
 
 void DepositAccount::saveToRecord(quint64 value) const
 {

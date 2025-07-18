@@ -2,7 +2,7 @@
 
 constexpr auto suffix = "trf";
 
-TransactionAccount::TransactionAccount() {}
+TransactionAccount::TransactionAccount() : AbstractAccount() {}
 
 float TransactionAccount::profit() const
 {

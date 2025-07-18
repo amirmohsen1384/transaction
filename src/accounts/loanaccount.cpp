@@ -2,7 +2,7 @@
 
 constexpr auto suffix = "lnf";
 
-LoanAccount::LoanAccount() {}
+LoanAccount::LoanAccount() : AbstractAccount() {}
 
 float LoanAccount::profit() const
 {
