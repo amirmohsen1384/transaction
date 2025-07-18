@@ -7,21 +7,37 @@
 class AbstractAccount : Entity
 {
 public:
+    enum Role
+    {
+        Cvv2Role,
+        OwnerRole,
+        ProfitRole,
+        BalanceRole,
+        CardNumberRole,
+        AccountKeyRole,
+        ShabaNumberRole,
+        LastCashMovedRole,
+        ExpirationDateRole,
+        PrimaryPasswordRole,
+        SecondaryPasswordRole,
+        TransferredBalanceRole,
+    };
+
     AbstractAccount();
 
     quint16 getCvv2() const;
     void setCvv2(quint16 cvv);
     
-    quint64 getBalance() const;
-    void setBalance(quint64 newBalance);
+    double getBalance() const;
+    void setBalance(double newBalance);
 
-    quint64 getOwner() const;
+    Key getOwner() const;
 
-    quint64 getCardNumber() const;
-    void setCardNumber(quint64 number);
+    QString getCardNumber() const;
+    void setCardNumber(const QString &number);
 
-    quint64 getShabaNumber() const;
-    void setShabaNumber(quint64 number);
+    QString getShabaNumber() const;
+    void setShabaNumber(const QString &number);
 
     QDate getExpirationDate() const;
     void setExpirationDate(const QDate &date);
@@ -32,8 +48,8 @@ public:
     int getSecondaryPassword() const;
     void setSecondaryPassword(int password);
 
-    quint64 getTransferredBalance() const;
-    void setTransferredBalance(quint64 value);
+    double getTransferredBalance() const;
+    void setTransferredBalance(double value);
 
     QDateTime getLastCashMoved() const;
     void setLastCashMoved(const QDateTime &dateTime);
@@ -43,18 +59,19 @@ public:
 
 public:
     virtual float profit() const = 0;
+    virtual void saveToRecord(quint64 value) const = 0;
 
 protected:
-    quint64 transferredBalance = 0;
+    double transferredBalance = 0;
     int secondaryPassword = 0;
     QDateTime lastCashMoved;
     int primaryPassword = 0;
-    quint64 cardNumber = 0;
-    quint64 shabaNumber = 0;
     QDate expirationDate;
-    quint64 balance = 0;
+    QString shabaNumber;
+    QString cardNumber;
+    double balance = 0;
     quint16 cvv2 = 0;
-    quint64 owner = 0;
+    Key owner = 0;
 };
 
 QDataStream& operator>>(QDataStream &stream, AbstractAccount &data);

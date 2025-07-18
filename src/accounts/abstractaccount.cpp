@@ -3,12 +3,12 @@
 AbstractAccount::AbstractAccount() : Entity()
 {}
 
-quint64 AbstractAccount::getBalance() const
+double AbstractAccount::getBalance() const
 {
     return balance;
 }
 
-void AbstractAccount::setBalance(quint64 newBalance)
+void AbstractAccount::setBalance(double newBalance)
 {
     balance = newBalance;
 }
@@ -23,22 +23,22 @@ void AbstractAccount::setExpirationDate(const QDate &date)
     expirationDate = date;
 }
 
-quint64 AbstractAccount::getCardNumber() const
+QString AbstractAccount::getCardNumber() const
 {
     return cardNumber;
 }
 
-void AbstractAccount::setCardNumber(quint64 number)
+void AbstractAccount::setCardNumber(const QString &number)
 {
     cardNumber = number;
 }
 
-quint64 AbstractAccount::getShabaNumber() const
+QString AbstractAccount::getShabaNumber() const
 {
     return shabaNumber;
 }
 
-void AbstractAccount::setShabaNumber(quint64 number)
+void AbstractAccount::setShabaNumber(const QString &number)
 {
     shabaNumber = number;
 }
@@ -63,7 +63,7 @@ void AbstractAccount::setLastCashMoved(const QDateTime &dateTime)
     lastCashMoved = dateTime;
 }
 
-quint64 AbstractAccount::getOwner() const
+Key AbstractAccount::getOwner() const
 {
     return owner;
 }
@@ -78,12 +78,12 @@ void AbstractAccount::setSecondaryPassword(int password)
     secondaryPassword = password;
 }
 
-quint64 AbstractAccount::getTransferredBalance() const
+double AbstractAccount::getTransferredBalance() const
 {
     return transferredBalance;
 }
 
-void AbstractAccount::setTransferredBalance(quint64 value)
+void AbstractAccount::setTransferredBalance(double value)
 {
     transferredBalance = value;
 }
