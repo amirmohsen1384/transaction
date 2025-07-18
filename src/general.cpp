@@ -129,3 +129,18 @@ quint64 Identifier::createCustomerID()
     auto generator = QRandomGenerator::global();
     return generator->generate64();
 }
+
+QDir Storage::customerFolder(quint64 value)
+{
+    const auto name = QString::number(value);
+    auto dir = Storage::customer();
+    if(dir.mkpath(name))
+    {
+        dir.cd(name);
+    }
+    else
+    {
+        qDebug() << "Failed to create customer folder.";
+    }
+    return dir;
+}
