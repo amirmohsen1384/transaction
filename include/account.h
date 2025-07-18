@@ -6,6 +6,6 @@
 #include "accounts/depositaccount.h"
 #include "accounts/transactionaccount.h"
 
-Account* loadFromKey(const Key &identifier);
+std::shared_ptr<AbstractAccount> loadFromKey(const Key &identifier);
 
 #endif // ACCOUNT_H

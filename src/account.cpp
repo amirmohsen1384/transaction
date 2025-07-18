@@ -1,34 +1,30 @@
-#include "account.h"
+#include "include/account.h"
 
-Account *loadFromKey(const Key &key)
+std::shared_ptr<AbstractAccount> loadFromKey(const Key &key)
 {
-    Account *result = nullptr;
     switch(Identifier::accountMode(key))
     {
     case Account::Loan:
     {
-        auto *account = new LoanAccount;
+        auto account = std::make_shared<LoanAccount>();
         *account = LoanAccount::loadFromRecord(key);
-        result = account;
-        return result;
+        return account;
     }
     case Account::Deposit:
     {
-        auto *account = new DepositAccount;
+        auto account = std::make_shared<DepositAccount>();
         *account = DepositAccount::loadFromRecord(key);
-        result = account;
-        return result;
+        return account;
     }
     case Account::Transaction:
     {
-        auto *account = new TransactionAccount;
+        auto account = std::make_shared<TransactionAccount>();
         *account = TransactionAccount::loadFromRecord(key);
-        result = account;
-        return result;
+        return account;
     }
-    case Account::None:
+    default:
     {
-        return result;
+        return {};
     }
     }
 }
