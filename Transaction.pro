@@ -9,6 +9,7 @@ HEADERS += \
     include/accounts/loanaccount.h \
     include/accounts/transactionaccount.h \
     include/core/cashtransaction.h \
+    include/core/errors.h \
     include/entity.h \
     include/general.h \
     include/accounts/abstractaccount.h \
