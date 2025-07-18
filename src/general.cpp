@@ -144,3 +144,23 @@ QDir Storage::customerFolder(quint64 value)
     }
     return dir;
 }
+
+Account Identifier::accountMode(const Key &value)
+{
+    if(Identifier::isValid(value, Account::Deposit))
+    {
+        return Account::Deposit;
+    }
+    else if(Identifier::isValid(value, Account::Loan))
+    {
+        return Account::Loan;
+    }
+    else if(Identifier::isValid(value, Account::Transaction))
+    {
+        return Account::Transaction;
+    }
+    else
+    {
+        return Account::None;
+    }
+}
