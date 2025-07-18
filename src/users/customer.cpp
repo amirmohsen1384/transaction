@@ -1,0 +1,135 @@
+#include "include/users/customer.h"
+
+constexpr auto suffix = "csf";
+
+Customer::Customer() : User() {}
+
+void Customer::saveToRecord(quint64 value) const
+{
+    if(!Identifier::isValid(value))
+    {
+        qDebug() << QString("The given ID (%1) is not valid for a customer.").arg(value);
+        return;
+    }
+
+    const auto fileName = Storage::customerFolder(value).absoluteFilePath(QString("metadata.%1").arg(suffix));
+
+    QFile file(fileName);
+    qDebug() << "Saving Customer Data:" << value;
+
+    if(!file.open(QFile::WriteOnly))
+    {
+        qDebug() << "Saving Failed: Failed to open file.";
+        return;
+    }
+
+    QDataStream stream(&file);
+    stream << *this;
+    if(stream.status() != QDataStream::Ok)
+    {
+        qDebug() << "Saving Failed: Failed to write file";
+    }
+    else
+    {
+        qDebug() << "Saving Completed.";
+    }
+}
+
+KeyList Customer::loadKeysFromRecord(Key value)
+{
+    if(!Identifier::isValid(value))
+    {
+        qDebug() << QString("The given ID (%1) is not valid for a customer.").arg(value);
+        return KeyList();
+    }
+
+    const auto fileName = Storage::customerFolder(value).absoluteFilePath(QString("keys.%1").arg(suffix));
+    QFile file(fileName);
+    qDebug() << "Loading Customer Keys:" << value;
+
+    if(!file.open(QFile::ReadOnly))
+    {
+        qDebug() << "Loading Failed: Failed to open file.";
+        return KeyList();
+    }
+
+    QDataStream stream(&file);
+    KeyList data;
+    stream >> data;
+
+    if(stream.status() != QDataStream::Ok)
+    {
+        qDebug() << "Load Failed: Failed to load file";
+        return KeyList();
+    }
+    else
+    {
+        qDebug() << "Loading Completed.";
+        return data;
+    }
+}
+
+void Customer::saveKeysToRecord(Key value, const KeyList &data) const
+{
+    if(!Identifier::isValid(value))
+    {
+        qDebug() << QString("The given ID (%1) is not valid for a customer.").arg(value);
+        return;
+    }
+
+    const auto fileName = Storage::customerFolder(value).absoluteFilePath(QString("keys.%1").arg(suffix));
+    QFile file(fileName);
+    qDebug() << "Saving Customer Keys:" << value;
+
+    if(!file.open(QFile::WriteOnly))
+    {
+        qDebug() << "Saving Failed: Failed to open file.";
+        return;
+    }
+
+    QDataStream stream(&file);
+    stream << data;
+    if(stream.status() != QDataStream::Ok)
+    {
+        qDebug() << "Saving Failed: Failed to write file";
+    }
+    else
+    {
+        qDebug() << "Saving Completed.";
+    }
+}
+
+Customer Customer::loadFromRecord(quint64 value)
+{
+    if(!Identifier::isValid(value))
+    {
+        qDebug() << QString("The given ID (%1) is not valid for a customer.").arg(value);
+        return Customer();
+    }
+
+    const auto fileName = Storage::customerFolder(value).absoluteFilePath(QString("metadata.%1").arg(suffix));
+
+    QFile file(fileName);
+    qDebug() << "Loading Customer Data:" << value;
+
+    if(!file.open(QFile::ReadOnly))
+    {
+        qDebug() << "Loading Failed: Failed to open file.";
+        return Customer();
+    }
+
+    QDataStream stream(&file);
+    Customer data;
+    stream >> data;
+
+    if(stream.status() != QDataStream::Ok)
+    {
+        qDebug() << "Load Failed: Failed to load file";
+        return Customer();
+    }
+    else
+    {
+        qDebug() << "Loading Completed.";
+        return data;
+    }
+}
