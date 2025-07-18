@@ -4,6 +4,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 CONFIG += c++17
 
 HEADERS += \
+    include/account.h \
     include/accounts/depositaccount.h \
     include/accounts/loanaccount.h \
     include/accounts/transactionaccount.h \
@@ -18,6 +19,7 @@ HEADERS += \
 
 SOURCES += \
     main.cpp \
+    src/account.cpp \
     src/accounts/abstractaccount.cpp \
     src/accounts/depositaccount.cpp \
     src/accounts/loanaccount.cpp \
