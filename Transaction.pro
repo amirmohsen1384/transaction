@@ -7,8 +7,13 @@ HEADERS += \
     include/accounts/depositaccount.h \
     include/accounts/loanaccount.h \
     include/accounts/transactionaccount.h \
+    include/core/cashtransaction.h \
+    include/entity.h \
     include/general.h \
-    include/accounts/abstractaccount.h
+    include/accounts/abstractaccount.h \
+    include/users/admin.h \
+    include/users/customer.h \
+    include/users/user.h
 
 
 SOURCES += \
@@ -17,7 +22,12 @@ SOURCES += \
     src/accounts/depositaccount.cpp \
     src/accounts/loanaccount.cpp \
     src/accounts/transactionaccount.cpp \
-    src/general.cpp
+    src/core/cashtransaction.cpp \
+    src/entity.cpp \
+    src/general.cpp \
+    src/users/admin.cpp \
+    src/users/customer.cpp \
+    src/users/user.cpp
 
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
