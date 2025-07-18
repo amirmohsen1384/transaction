@@ -2,8 +2,9 @@
 #define ABSTRACTACCOUNT_H
 
 #include "include/general.h"
+#include "include/entity.h"
 
-class AbstractAccount
+class AbstractAccount : Entity
 {
 public:
     AbstractAccount();
@@ -39,7 +40,6 @@ public:
 
 public:
     virtual float profit() const = 0;
-    virtual void saveToRecord(quint64 value) const = 0;
 
 protected:
     int secondaryPassword = 0;
