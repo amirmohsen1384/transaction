@@ -1,6 +1,7 @@
 #include "include/accounts/abstractaccount.h"
 
-AbstractAccount::AbstractAccount() {}
+AbstractAccount::AbstractAccount() : Entity()
+{}
 
 quint64 AbstractAccount::getBalance() const
 {
