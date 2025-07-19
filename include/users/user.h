@@ -30,6 +30,8 @@ public:
     friend QDataStream &operator<<(QDataStream &stream, const User &user);
     friend QDataStream &operator>>(QDataStream &stream, User &user);
 
+    QString getName() const;
+
 private:
     quint64 nationalCode;
     QString firstName;

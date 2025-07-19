@@ -63,6 +63,11 @@ void User::setAge(quint64 value)
     age = value;
 }
 
+QString User::getName() const
+{
+    return QString("%1 %2").arg(firstName).arg(lastName);
+}
+
 QDataStream &operator<<(QDataStream &stream, const User &user)
 {
     stream << user.nationalCode << user.firstName;
