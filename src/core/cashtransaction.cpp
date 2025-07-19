@@ -21,6 +21,16 @@ double CashTransaction::maximumTransactionWithoutDynamicPassword() const
     return 1 * std::pow(10, 5);
 }
 
+void CashTransaction::reset()
+{
+    dynamicPassword = 0;
+    setDestinationId(0);
+    setAmount(0.0);
+    setSourceId(0);
+    setPassword(0);
+    setCvv2(0);
+}
+
 long int CashTransaction::getDynamicPassword() const
 {
     return dynamicPassword;
