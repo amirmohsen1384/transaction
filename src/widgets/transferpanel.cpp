@@ -4,7 +4,7 @@
 #include "include/account.h"
 #include <QMessageBox>
 
-TransferPanel::TransferPanel(QWidget *parent) : AbstractPanel(parent)
+TransferPanel::TransferPanel(const Key &sourceOwner, QWidget *parent) : AbstractPanel(parent)
 {
     ui = std::make_unique<Ui::TransferPanel>();
     ui->setupUi(this);
@@ -16,6 +16,15 @@ TransferPanel::TransferPanel(QWidget *parent) : AbstractPanel(parent)
     ui->cvv2Edit->setValidator(&cvv2Validator);
     ui->amountEdit->setValidator(&amountValidator);
     ui->destinationEdit->setValidator(&targetValidator);
+
+    if(!Storage::customerFolder(sourceOwner).exists())
+    {
+        throw std::runtime_error("The transfer panel cannot be opened with an unknown customer!");
+    }
+
+    sourceModel.setIdentifier(sourceOwner);
+    ui->sourceEdit->setModel(&sourceModel);
+    ui->sourceEdit->setItemDelegate(&sourceDelegate);
 }
 
 TransferPanel::~TransferPanel() {}
@@ -32,8 +41,9 @@ void TransferPanel::updateOwner(const QString &value)
     }
     else
     {
-        ui->ownerLabel->setVisible(true);
         auto user = Customer::loadFromRecord(account->getOwner());
+
+        ui->ownerLabel->setVisible(true);
         ui->ownerLabel->setStyleSheet("color:green");
         ui->ownerLabel->setText(QString("This account belongs to %1").arg(user.getName()));
     }
