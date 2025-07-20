@@ -1,6 +1,8 @@
 #ifndef TRANSFERPANEL_H
 #define TRANSFERPANEL_H
 
+#include <QIntValidator>
+#include <QDoubleValidator>
 #include "include/core/cashtransaction.h"
 #include "include/widgets/abstractpanel.h"
 
@@ -25,6 +27,10 @@ public slots:
 
 private:
     CashTransaction transaction;
+    QIntValidator cvv2Validator;
+    QIntValidator targetValidator;
+    QIntValidator passwordValidator;
+    QDoubleValidator amountValidator;
     std::unique_ptr<Ui::TransferPanel> ui;
 };
 

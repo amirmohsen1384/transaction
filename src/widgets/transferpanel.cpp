@@ -8,6 +8,14 @@ TransferPanel::TransferPanel(QWidget *parent) : AbstractPanel(parent)
 {
     ui = std::make_unique<Ui::TransferPanel>();
     ui->setupUi(this);
+
+    amountValidator.setBottom(0.00);
+    amountValidator.setTop(transaction.maximumTransaction());
+
+    ui->ownerLabel->setVisible(false);
+    ui->cvv2Edit->setValidator(&cvv2Validator);
+    ui->amountEdit->setValidator(&amountValidator);
+    ui->destinationEdit->setValidator(&targetValidator);
 }
 
 TransferPanel::~TransferPanel() {}
@@ -18,23 +26,24 @@ void TransferPanel::updateOwner(const QString &value)
     auto account = loadFromKey(key);
     if(account == nullptr)
     {
+        ui->ownerLabel->setVisible(true);
         ui->ownerLabel->setStyleSheet("color:red");
         ui->ownerLabel->setText("No one found with this account number!");
     }
     else
     {
+        ui->ownerLabel->setVisible(true);
         auto user = Customer::loadFromRecord(account->getOwner());
         ui->ownerLabel->setStyleSheet("color:green");
-        ui->ownerLabel->setText(QString("This account belongs to %1").arg(user.getName());
-
+        ui->ownerLabel->setText(QString("This account belongs to %1").arg(user.getName()));
     }
 }
 
 void TransferPanel::reset()
 {
+    ui->destinationLabel->setText(QString());
     ui->destinationEdit->setText(QString());
     ui->passwordEdit->setText(QString());
-    ui->amountEdit->setText(QString());
     ui->ownerLabel->setVisible(false);
     ui->cvv2Edit->setText(QString());
     transaction.reset();
@@ -51,8 +60,8 @@ void TransferPanel::accept()
     {
         transaction.setDestinationId(ui->destinationEdit->text().toLongLong());
         transaction.setSourceId(ui->sourceEdit->currentText().toLongLong());
+        transaction.setAmount(ui->destinationLabel->text().toDouble());
         transaction.setPassword(ui->passwordEdit->text().toInt());
-        transaction.setAmount(ui->amountEdit->text().toDouble());
         transaction.setCvv2(ui->cvv2Edit->text().toInt());
         transaction.transfer();
 
