@@ -23,6 +23,7 @@ HEADERS += \
 
 
 SOURCES += \
+    src/panels/customerpanel.cpp \
     main.cpp \
     src/account.cpp \
     src/accounts/abstractaccount.cpp \
@@ -45,6 +46,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 FORMS += \
+    ui/panels/customerpanel.ui \
     ui/widgets/transferpanel.ui
 
 RESOURCES += \
