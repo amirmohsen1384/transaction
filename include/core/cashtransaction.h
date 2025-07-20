@@ -17,13 +17,14 @@ public:
     long int getCvv2() const;
     Key getSourceId() const;
 
-protected:
+public:
     virtual double income() const;
     virtual double maximumTransaction() const;
     virtual double maximumDailyTransaction() const;
     virtual double maximumTransactionWithoutDynamicPassword() const;
 
 public slots:
+    void reset();
     void transfer();
     void setCvv2(long int value);
     void setAmount(double value);
