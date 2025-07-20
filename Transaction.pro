@@ -4,6 +4,9 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 CONFIG += c++17
 
 HEADERS += \
+    include/widgets/accountview.h \
+    include/elements/passwordedit.h \
+    include/panels/customerpanel.h \
     include/account.h \
     include/accounts/depositaccount.h \
     include/accounts/loanaccount.h \
@@ -23,6 +26,8 @@ HEADERS += \
 
 
 SOURCES += \
+    src/widgets/accountview.cpp \
+    src/elements/passwordedit.cpp \
     src/panels/customerpanel.cpp \
     main.cpp \
     src/account.cpp \
@@ -46,6 +51,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 FORMS += \
+    ui/widgets/accountview.ui \
     ui/panels/customerpanel.ui \
     ui/widgets/transferpanel.ui
 
