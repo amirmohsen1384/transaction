@@ -60,17 +60,7 @@ QVariant AccountListModel::data(const QModelIndex &index, int role) const
     {
     case Qt::DisplayRole:
     {
-        const auto number = target.data->getCardNumber();
-        QString result;
-        for(int i = 0; i < number.size(); ++i)
-        {
-            result.push_back(number.at(i));
-            if((i + 1) % 4 == 0)
-            {
-                result.append(' ');
-            }
-        }
-        return result.removeLast();
+        return target.id;
     }
     case Qt::BackgroundRole:
     {
