@@ -2,5 +2,10 @@
     <qresource prefix="/">
         <file>images/widgets/back.png</file>
         <file>images/widgets/check.png</file>
+        <file>images/accounts/deposit-account.png</file>
+        <file>images/accounts/loan-account.png</file>
+        <file>images/accounts/transaction-account.png</file>
+        <file>images/widgets/hide-password.png</file>
+        <file>images/widgets/show-password.png</file>
     </qresource>
 </RCC>
