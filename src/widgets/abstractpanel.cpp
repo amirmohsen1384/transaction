@@ -1,6 +1,6 @@
 #include "include/widgets/abstractpanel.h"
 
-AbstractPanel::AbstractPanel(QWidget *parent) : QWidget{parent}
+AbstractPanel::AbstractPanel(QWidget *parent) : QDialog{parent}
 {}
 
 void AbstractPanel::reset() {}

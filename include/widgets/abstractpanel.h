@@ -1,9 +1,9 @@
 #ifndef ABSTRACTPANEL_H
 #define ABSTRACTPANEL_H
 
-#include <QWidget>
+#include <QDialog>
 
-class AbstractPanel : public QWidget
+class AbstractPanel : public QDialog
 {
     Q_OBJECT
 public:
