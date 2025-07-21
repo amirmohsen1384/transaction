@@ -1,6 +1,7 @@
 #ifndef CUSTOMERMODEL_H
 #define CUSTOMERMODEL_H
 
+#include "include/users/customer.h"
 #include "include/account.h"
 #include <QAbstractListModel>
 #include <QColor>
@@ -24,7 +25,7 @@ public:
 
     virtual int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
-    virtual QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
+    virtual QVariant headerData(int section = 0, Qt::Orientation orientation = Qt::Horizontal, int role = Qt::UserRole) const override;
 
 public:
     Key getIdentifier() const;
@@ -36,6 +37,7 @@ signals:
     void identifierChanged(const Key &value);
 
 private:
+    Customer metadata;
     Key identifier = 0;
     QList<AccountData> container;
 };

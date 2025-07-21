@@ -9,7 +9,7 @@ void CustomerModel::updateData()
 
     if(!Identifier::isValid(identifier) || !Storage::customerFolder(identifier).exists())
     {
-        qDebug() << "The given customer key is not valid nor not available.";
+        qDebug() << "The given customer key is not valid nor available.";
     }
     else
     {
@@ -26,16 +26,14 @@ void CustomerModel::updateData()
                 auto account = loadFromKey(value);
                 if(account != nullptr)
                 {
-                    AccountData target;
-                    target.data = account;
-                    target.identifier = value;
-                    container.append(target);
+                    container.append({value, account});
                 }
             }
         }
     }
 
     endResetModel();
+    metadata = Customer::loadFromRecord(identifier);
 }
 
 CustomerModel::CustomerModel(QObject *parent) : QAbstractListModel(parent)
@@ -58,16 +56,12 @@ QVariant CustomerModel::data(const QModelIndex &index, int role) const
     {
         return {};
     }
-    auto target = container[index.row()];
+    auto target = container.at(index.row());
     switch(role)
     {
     case Qt::DisplayRole:
     {
-        return target.id;
-    }
-    case Qt::BackgroundRole:
-    {
-        return target.background;
+        return target.identifier;
     }
     case Qt::UserRole:
     {
@@ -75,13 +69,21 @@ QVariant CustomerModel::data(const QModelIndex &index, int role) const
     }
     case AbstractAccount::KeyRole:
     {
-        return target.id;
+        return target.identifier;
     }
     default:
     {
         return {};
     }
     }
+}
+
+QVariant CustomerModel::headerData(int section, Qt::Orientation orientation, int role) const
+{
+    Q_UNUSED(role)
+    Q_UNUSED(section)
+    Q_UNUSED(orientation)
+    return QVariant::fromValue(metadata);
 }
 
 Key CustomerModel::getIdentifier() const
