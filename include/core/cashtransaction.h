@@ -8,14 +8,20 @@ class CashTransaction : public QObject
 {
     Q_OBJECT
 public:
+    enum Status {Pending = 0, Successful, Failed};
+
+public:
+
     Q_DISABLE_COPY_MOVE(CashTransaction)
     explicit CashTransaction(QObject *parent = nullptr);
+    CashTransaction::Status getStatus() const;
     long int getDynamicPassword() const;
     Key getDestinationId() const;
     long int getPassword() const;
     double getAmount() const;
     long int getCvv2() const;
     Key getSourceId() const;
+
 
 public:
     virtual double income() const;
@@ -31,8 +37,10 @@ public slots:
     void setPassword(long int value);
     void setSourceId(const Key &value);
     void setDestinationId(const Key &value);
+    void setStatus(const CashTransaction::Status value);
 
 signals:
+    void statusChanged(const CashTransaction::Status value);
     void destinationIdChanged(const Key &value);
     void sourceIdChanged(const Key &value);
     void passwordChanged(long int value);
@@ -41,6 +49,7 @@ signals:
     void dynamicPasswordCreated();
     
 private:
+    Status state = Status::Pending;
     long int dynamicPassword = 0;
     Key destinationId = 0;
     long int password = 0;

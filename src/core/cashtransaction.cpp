@@ -2,9 +2,15 @@
 #include "include/core/errors.h"
 #include "include/account.h"
 #include <QRandomGenerator>
+#include <QPrinter>
 
 CashTransaction::CashTransaction(QObject *parent) : QObject{parent}
 {}
+
+CashTransaction::Status CashTransaction::getStatus() const
+{
+    return state;
+}
 
 double CashTransaction::maximumTransaction() const
 {
@@ -43,6 +49,12 @@ void CashTransaction::setDestinationId(const Key &value)
         destinationId = value;
         emit destinationIdChanged(value);
     }
+}
+
+void CashTransaction::setStatus(const Status value)
+{
+    this->state = value;
+    emit statusChanged(value);
 }
 
 Key CashTransaction::getSourceId() const
@@ -107,39 +119,46 @@ void CashTransaction::transfer()
     auto source = loadFromKey(sourceId);
     if(source == nullptr)
     {
+        setStatus(CashTransaction::Failed);
         throw UnknownSourceException();
     }
 
     auto destination = loadFromKey(destinationId);
     if(destination == nullptr)
     {
+        setStatus(CashTransaction::Failed);
         throw UnknownDestinationException();
     }
 
     if(QDate::currentDate() > source->getExpirationDate())
     {
+        setStatus(CashTransaction::Failed);
         throw ExpiredCardException();
     }
 
     if(this->amount > this->maximumTransaction())
     {
+        setStatus(CashTransaction::Failed);
         throw ExceededCashWithdrawException();
     }
 
     auto final = (1 + this->income()) * this->amount;
     if(final > source->getBalance())
     {
+        setStatus(CashTransaction::Failed);
         throw NotEnoughBalanceException();
     }
 
     auto transferred = source->getTransferredBalance();
     if(final + transferred > this->maximumDailyTransaction())
     {
+        setStatus(CashTransaction::Failed);
         throw ExceededDailyTransactionLimitExcepion();
     }
 
     if(cvv2 != source->getCvv2())
     {
+        setStatus(CashTransaction::Failed);
         throw IncorrectCVV2Exception();
     }
 
@@ -147,6 +166,7 @@ void CashTransaction::transfer()
     {
         if(dynamicPassword != password)
         {
+            setStatus(CashTransaction::Failed);
             throw IncorrectPasswordException();
         }
     }
@@ -156,6 +176,7 @@ void CashTransaction::transfer()
         {
             if(password != source->getSecondaryPassword())
             {
+                setStatus(CashTransaction::Failed);
                 throw IncorrectPasswordException();
             }
         }
@@ -168,4 +189,11 @@ void CashTransaction::transfer()
 
     destination->saveToRecord(destinationId);
     source->saveToRecord(sourceId);
+
+    setStatus(CashTransaction::Successful);
+}
+
+void CashTransaction::generatePDF() const
+{
+
 }
