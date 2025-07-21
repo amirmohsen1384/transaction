@@ -1,8 +1,14 @@
 #include "include/users/admin.h"
+#include <QRandomGenerator>
 
 constexpr auto suffix = "adf";
 
 Admin::Admin() : User() {}
+
+quint64 Admin::generateID()
+{
+    return QRandomGenerator::global()->bounded(std::pow(10, 7) - 1);
+}
 
 Admin Admin::loadFromRecord(quint64 value)
 {

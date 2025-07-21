@@ -9,6 +9,7 @@ public:
     Admin();
 
 public:
+    static quint64 generateID();
     static Admin loadFromRecord(quint64 value);
     virtual void saveToRecord(quint64 value) const override;
 };
