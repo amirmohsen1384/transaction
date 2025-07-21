@@ -12,6 +12,8 @@ TransferPanel::TransferPanel(const Key &sourceOwner, QWidget *parent) : QDialog(
     amountValidator.setBottom(0.00);
     amountValidator.setTop(transaction.maximumTransaction());
 
+    targetValidator.setBottom(0);
+    targetValidator.setTop(std::pow(10, 7) - 1);
     ui->ownerLabel->setVisible(false);
     ui->cvv2Edit->setValidator(&cvv2Validator);
     ui->amountEdit->setValidator(&amountValidator);
@@ -21,6 +23,8 @@ TransferPanel::TransferPanel(const Key &sourceOwner, QWidget *parent) : QDialog(
     {
         qDebug() << "The transfer panel may lead to unexpected result with an invalid ID";
     }
+
+    setFixedSize(QSize(600, 410));
 
     sourceModel.setIdentifier(sourceOwner);
     ui->sourceEdit->setModel(&sourceModel);
@@ -115,6 +119,7 @@ void TransferPanel::accept()
 
         QMessageBox message(this);
         message.setWindowTitle("Successful");
+        message.setIcon(QMessageBox::Information);
         message.setText("Transaction has been successful!");
         message.exec();
 

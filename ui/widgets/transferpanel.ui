@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>645</width>
-    <height>413</height>
+    <width>600</width>
+    <height>415</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -270,6 +270,9 @@
           <bold>true</bold>
          </font>
         </property>
+        <property name="inputMask">
+         <string/>
+        </property>
        </widget>
       </item>
       <item row="1" column="0">
@@ -375,8 +378,30 @@
      </layout>
     </widget>
    </item>
+   <item row="8" column="1" colspan="2">
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Orientation::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>amountEdit</tabstop>
+  <tabstop>sourceEdit</tabstop>
+  <tabstop>destinationEdit</tabstop>
+  <tabstop>cvv2Edit</tabstop>
+  <tabstop>passwordEdit</tabstop>
+  <tabstop>acceptButton</tabstop>
+  <tabstop>cancelButton</tabstop>
+ </tabstops>
  <resources>
   <include location="../../resources.qrc"/>
  </resources>
@@ -388,8 +413,8 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>370</x>
-     <y>401</y>
+     <x>318</x>
+     <y>489</y>
     </hint>
     <hint type="destinationlabel">
      <x>738</x>
@@ -404,8 +429,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>318</x>
-     <y>401</y>
+     <x>266</x>
+     <y>489</y>
     </hint>
     <hint type="destinationlabel">
      <x>253</x>
