@@ -20,7 +20,6 @@ void CustomerModel::updateData()
         }
         else
         {
-            auto generator = QRandomGenerator::global();
             for(const Key &value : keys)
             {
                 auto account = loadFromKey(value);
