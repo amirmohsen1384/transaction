@@ -1,10 +1,10 @@
 #ifndef TRANSFERPANEL_H
 #define TRANSFERPANEL_H
 
+#include <QDialog>
 #include <QIntValidator>
 #include <QDoubleValidator>
 #include "include/core/cashtransaction.h"
-#include "include/widgets/abstractpanel.h"
 #include "include/models/accountlistmodel.h"
 #include "include/delegates/accountdelegate.h"
 
@@ -13,7 +13,7 @@ namespace Ui
     class TransferPanel;
 }
 
-class TransferPanel : public AbstractPanel
+class TransferPanel : public QDialog
 {
     Q_OBJECT
 public:
@@ -21,8 +21,6 @@ public:
     ~TransferPanel();
 
 public slots:
-    virtual void reset() override;
-    virtual void reject() override;
     virtual void accept() override;
     void updateOwner(const QString &value);
 

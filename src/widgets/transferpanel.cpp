@@ -4,7 +4,7 @@
 #include "include/account.h"
 #include <QMessageBox>
 
-TransferPanel::TransferPanel(const Key &sourceOwner, QWidget *parent) : AbstractPanel(parent)
+TransferPanel::TransferPanel(const Key &sourceOwner, QWidget *parent) : QDialog(parent)
 {
     ui = std::make_unique<Ui::TransferPanel>();
     ui->setupUi(this);
@@ -19,7 +19,7 @@ TransferPanel::TransferPanel(const Key &sourceOwner, QWidget *parent) : Abstract
 
     if(!Storage::customerFolder(sourceOwner).exists())
     {
-        throw std::runtime_error("The transfer panel cannot be opened with an unknown customer!");
+        qDebug() << "The transfer panel may lead to unexpected result with an invalid ID";
     }
 
     sourceModel.setIdentifier(sourceOwner);
@@ -49,30 +49,17 @@ void TransferPanel::updateOwner(const QString &value)
     }
 }
 
-void TransferPanel::reset()
-{
-    ui->destinationLabel->setText(QString());
-    ui->destinationEdit->setText(QString());
-    ui->passwordEdit->setText(QString());
-    ui->ownerLabel->setVisible(false);
-    ui->cvv2Edit->setText(QString());
-    transaction.reset();
-}
-
-void TransferPanel::reject()
-{
-    AbstractPanel::reject();
-}
-
 void TransferPanel::accept()
 {
     try
     {
         transaction.setDestinationId(ui->destinationEdit->text().toLongLong());
         transaction.setSourceId(ui->sourceEdit->currentText().toLongLong());
-        transaction.setAmount(ui->destinationLabel->text().toDouble());
-        transaction.setPassword(ui->passwordEdit->text().toInt());
+        transaction.setAmount(ui->amountEdit->text().toDouble());
+        transaction.setPassword(ui->passwordEdit->text().toLong());
         transaction.setCvv2(ui->cvv2Edit->text().toInt());
+
+        qDebug() << "Start transferring...";
         transaction.transfer();
 
         QMessageBox message(this);
@@ -80,7 +67,7 @@ void TransferPanel::accept()
         message.setText("Transaction has been successful!");
         message.exec();
 
-        AbstractPanel::accept();
+        QDialog::accept();
     }
     catch(const std::exception &e)
     {
