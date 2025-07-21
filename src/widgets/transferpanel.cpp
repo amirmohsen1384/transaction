@@ -53,11 +53,55 @@ void TransferPanel::accept()
 {
     try
     {
-        transaction.setDestinationId(ui->destinationEdit->text().toLongLong());
-        transaction.setSourceId(ui->sourceEdit->currentText().toLongLong());
-        transaction.setAmount(ui->amountEdit->text().toDouble());
-        transaction.setPassword(ui->passwordEdit->text().toLong());
-        transaction.setCvv2(ui->cvv2Edit->text().toInt());
+        const auto destination = ui->destinationEdit->text();
+        if(destination.isEmpty())
+        {
+            throw std::runtime_error("You have not entered the destination.");
+        }
+        else
+        {
+            transaction.setDestinationId(destination.toLongLong());
+        }
+
+        const auto source = ui->sourceEdit->currentText();
+        if(source.isEmpty())
+        {
+            throw std::runtime_error("You have not entered the source.");
+        }
+        else
+        {
+            transaction.setSourceId(source.toLongLong());
+        }
+
+        const auto amount = ui->amountEdit->text();
+        if(amount.isEmpty())
+        {
+            throw std::runtime_error("You have not entered the amount.");
+        }
+        else
+        {
+            transaction.setAmount(ui->amountEdit->text().toDouble());
+        }
+
+        const auto password = ui->passwordEdit->text();
+        if(password.isEmpty())
+        {
+            throw std::runtime_error("You have not entered the password.");
+        }
+        else
+        {
+            transaction.setPassword(password.toLong());
+        }
+
+        const auto cvv2 = ui->cvv2Edit->text();
+        if(cvv2.isEmpty())
+        {
+            throw std::runtime_error("You have not entered the CVV2.");
+        }
+        else
+        {
+            transaction.setCvv2(cvv2.toInt());
+        }
 
         qDebug() << "Start transferring...";
         transaction.transfer();
