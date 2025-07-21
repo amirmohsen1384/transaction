@@ -1,9 +1,15 @@
 #include "include/users/customer.h"
 #include "include/account.h"
+#include <QRandomGenerator>
 
 constexpr auto suffix = "csf";
 
 Customer::Customer() : User() {}
+
+quint64 Customer::generateID()
+{
+    return QRandomGenerator::global()->bounded(std::pow(10, 7) - 1);
+}
 
 void Customer::saveToRecord(quint64 value) const
 {

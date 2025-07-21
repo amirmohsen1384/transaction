@@ -9,6 +9,7 @@ public:
     Customer();
 
 public:
+    static quint64 generateID();
     static Customer loadFromRecord(quint64 value);
     virtual void saveToRecord(quint64 value) const override;
 
