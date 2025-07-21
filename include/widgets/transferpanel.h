@@ -27,7 +27,7 @@ public slots:
 private:
     CashTransaction transaction;
     QIntValidator cvv2Validator;
-    AccountListModel sourceModel;
+    CustomerModel sourceModel;
     QIntValidator targetValidator;
     AccountDelegate sourceDelegate;
     QIntValidator passwordValidator;

@@ -25,6 +25,7 @@ TransferPanel::TransferPanel(const Key &sourceOwner, QWidget *parent) : QDialog(
     sourceModel.setIdentifier(sourceOwner);
     ui->sourceEdit->setModel(&sourceModel);
     ui->sourceEdit->setItemDelegate(&sourceDelegate);
+    setWindowTitle(QString("%1 - Transfer your money").arg(sourceModel.headerData().value<Customer>().getName()));
 }
 
 TransferPanel::~TransferPanel() {}
