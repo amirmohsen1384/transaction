@@ -21,6 +21,7 @@ public:
     void setBalance(double newBalance);
 
     Key getOwner() const;
+    void setOwner(const Key &value);
 
     QString getCardNumber() const;
     void setCardNumber(const QString &number);

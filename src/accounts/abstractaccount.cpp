@@ -68,6 +68,11 @@ Key AbstractAccount::getOwner() const
     return owner;
 }
 
+void AbstractAccount::setOwner(const Key &value)
+{
+    owner = value;
+}
+
 int AbstractAccount::getSecondaryPassword() const
 {
     return secondaryPassword;
