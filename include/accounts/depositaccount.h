@@ -9,6 +9,7 @@ public:
     DepositAccount();
 
 public:
+    static quint64 generateID();
     static QString getFilename(quint64 value);
     static DepositAccount loadFromRecord(quint64 value);
 

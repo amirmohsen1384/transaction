@@ -1,8 +1,18 @@
 #include "include/accounts/depositaccount.h"
+#include <QRandomGenerator>
 
 constexpr auto suffix = "dpf";
 
 DepositAccount::DepositAccount() : AbstractAccount() {}
+
+quint64 DepositAccount::generateID()
+{
+    auto generator = QRandomGenerator::global();
+    int number = generator->bounded(int(std::pow(10, GENERAL_DIGITS - 1)), int(std::pow(10, GENERAL_DIGITS) - 1));
+    number *= std::pow(10, VALID_DIGITS);
+    number += DEPOSIT_ID;
+    return number;
+}
 
 QString DepositAccount::getFilename(quint64 value)
 {
