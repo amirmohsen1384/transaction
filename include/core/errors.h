@@ -35,7 +35,7 @@ class NotEnoughBalanceException : public std::exception
 public:
     inline virtual const char* what() const noexcept override
     {
-        return "The entered source account has been expired.";
+        return "You do not have enough money to transfer this amount of money.";
     }
 };
 
