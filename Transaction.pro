@@ -4,6 +4,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 CONFIG += c++17
 
 HEADERS += \
+    include/models/customermodel.h \
     include/widgets/accountview.h \
     include/elements/passwordedit.h \
     include/panels/customerpanel.h \
@@ -17,7 +18,6 @@ HEADERS += \
     include/entity.h \
     include/general.h \
     include/accounts/abstractaccount.h \
-    include/models/accountlistmodel.h \
     include/users/admin.h \
     include/users/customer.h \
     include/users/user.h \
@@ -28,6 +28,7 @@ HEADERS += \
 
 
 SOURCES += \
+    src/models/customermodel.cpp \
     src/widgets/passwordeditor.cpp \
     src/widgets/accountview.cpp \
     src/elements/passwordedit.cpp \
@@ -42,7 +43,6 @@ SOURCES += \
     src/delegates/accountdelegate.cpp \
     src/entity.cpp \
     src/general.cpp \
-    src/models/accountlistmodel.cpp \
     src/users/admin.cpp \
     src/users/customer.cpp \
     src/users/user.cpp \
