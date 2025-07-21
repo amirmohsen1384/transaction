@@ -24,7 +24,6 @@ public:
     virtual double maximumTransactionWithoutDynamicPassword() const;
 
 public slots:
-    void reset();
     void transfer();
     void setCvv2(long int value);
     void setAmount(double value);

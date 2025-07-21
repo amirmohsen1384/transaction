@@ -21,16 +21,6 @@ double CashTransaction::maximumTransactionWithoutDynamicPassword() const
     return 1 * std::pow(10, 5);
 }
 
-void CashTransaction::reset()
-{
-    dynamicPassword = 0;
-    setDestinationId(0);
-    setAmount(0.0);
-    setSourceId(0);
-    setPassword(0);
-    setCvv2(0);
-}
-
 long int CashTransaction::getDynamicPassword() const
 {
     return dynamicPassword;
@@ -133,7 +123,7 @@ void CashTransaction::transfer()
 
     if(this->amount > this->maximumTransaction())
     {
-        throw ExceededCashWithdraw();
+        throw ExceededCashWithdrawException();
     }
 
     auto final = (1 + this->income()) * this->amount;
@@ -145,21 +135,31 @@ void CashTransaction::transfer()
     auto transferred = source->getTransferredBalance();
     if(final + transferred > this->maximumDailyTransaction())
     {
-        throw ExceededDailyTransactionLimit();
+        throw ExceededDailyTransactionLimitExcepion();
     }
-    auto base = double {};
+
+    if(cvv2 != source->getCvv2())
+    {
+        throw IncorrectCVV2Exception();
+    }
+
     if(this->amount > maximumTransactionWithoutDynamicPassword())
     {
-        base = dynamicPassword;
+        if(dynamicPassword != password)
+        {
+            throw IncorrectPasswordException();
+        }
     }
     else
     {
-        base = source->getSecondaryPassword();
-    }
+        if(password != source->getPrimaryPassword())
+        {
+            if(password != source->getSecondaryPassword())
+            {
+                throw IncorrectPasswordException();
+            }
+        }
 
-    if(base != password)
-    {
-        throw IncorrectPasswordException();
     }
 
     source->setTransferredBalance(source->getTransferredBalance() + this->amount);
