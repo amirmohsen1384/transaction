@@ -62,5 +62,4 @@ FORMS += \
     ui/widgets/useredit.ui
 
 RESOURCES += \
-    resources.qrc \
-    ui/widgets/resources.qrc
+    resources.qrc
