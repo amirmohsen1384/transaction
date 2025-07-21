@@ -31,11 +31,8 @@ namespace Storage
 
 namespace Identifier
 {
-    quint64 createAdminID();
-    quint64 createCustomerID();
     bool isValid(quint64 value);
     Account accountMode(const Key &value);
-    quint64 createAccountID(const Account &account);
     bool isValid(quint64 value, const Account &account);
 }
 

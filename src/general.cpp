@@ -87,49 +87,6 @@ bool Identifier::isValid(quint64 value, const Account &account)
     }
 }
 
-#include <QRandomGenerator>
-
-quint64 Identifier::createAccountID(const Account &account)
-{
-    auto generator = QRandomGenerator::global();
-    int number = generator->bounded(int(std::pow(10, GENERAL_DIGITS - 1)), int(std::pow(10, GENERAL_DIGITS) - 1));
-    number *= std::pow(10, VALID_DIGITS);
-    switch(account)
-    {
-    case Account::Deposit:
-    {
-        number += DEPOSIT_ID;
-        return number;
-    }
-    case Account::Loan:
-    {
-        number += LOAN_ID;
-        return number;
-    }
-    case Account::Transaction:
-    {
-        number += TRANSACTION_ID;
-        return number;
-    }
-    default:
-    {
-        return INVALID_ID;
-    }
-    }
-}
-
-quint64 Identifier::createAdminID()
-{
-    auto generator = QRandomGenerator::global();
-    return generator->generate64();
-}
-
-quint64 Identifier::createCustomerID()
-{
-    auto generator = QRandomGenerator::global();
-    return generator->generate64();
-}
-
 QDir Storage::customerFolder(quint64 value)
 {
     const auto name = QString::number(value);
