@@ -5,7 +5,7 @@
 #include <QIntValidator>
 #include <QDoubleValidator>
 #include "include/core/cashtransaction.h"
-#include "include/models/accountlistmodel.h"
+#include "include/models/customermodel.h"
 #include "include/delegates/accountdelegate.h"
 
 namespace Ui
