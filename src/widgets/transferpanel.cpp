@@ -31,6 +31,12 @@ TransferPanel::~TransferPanel() {}
 
 void TransferPanel::updateOwner(const QString &value)
 {
+    if(value.isEmpty())
+    {
+        ui->ownerLabel->setVisible(false);
+        return;
+    }
+
     const auto key = value.toLongLong();
     auto account = loadFromKey(key);
     if(account == nullptr)
