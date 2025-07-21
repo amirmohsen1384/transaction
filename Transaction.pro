@@ -56,4 +56,5 @@ FORMS += \
     ui/widgets/transferpanel.ui
 
 RESOURCES += \
-    resources.qrc
+    resources.qrc \
+    ui/widgets/resources.qrc
