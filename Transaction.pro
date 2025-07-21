@@ -22,7 +22,8 @@ HEADERS += \
     include/users/customer.h \
     include/users/user.h \
     include/widgets/abstractpanel.h \
-    include/widgets/transferpanel.h
+    include/widgets/transferpanel.h \
+    include/widgets/useredit.h
 
 
 SOURCES += \
@@ -44,7 +45,8 @@ SOURCES += \
     src/users/customer.cpp \
     src/users/user.cpp \
     src/widgets/abstractpanel.cpp \
-    src/widgets/transferpanel.cpp
+    src/widgets/transferpanel.cpp \
+    src/widgets/useredit.cpp
 
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
@@ -53,7 +55,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 FORMS += \
     ui/widgets/accountview.ui \
     ui/panels/customerpanel.ui \
-    ui/widgets/transferpanel.ui
+    ui/widgets/transferpanel.ui \
+    ui/widgets/useredit.ui
 
 RESOURCES += \
     resources.qrc \
