@@ -37,18 +37,19 @@ void AccountDelegate::paint(QPainter *painter, const QStyleOptionViewItem &optio
         painter->setPen(pen);
     }
     {
-        auto font = painter->font();
+        const auto font = painter->font();
         painter->setFont(QFont("Lucida Console", 14));
-        painter->drawText(region, data->getCardNumber(), QTextOption(Qt::AlignCenter));
+        painter->drawText(region, index.data(AbstractAccount::KeyRole).toString(), QTextOption(Qt::AlignCenter));
         painter->setFont(font);
     }
     {
         auto target = region.marginsRemoved(margins);
         auto font = painter->font();
-        painter->setFont(QFont("Segoe UI", 10, QFont::Bold));
-        painter->drawText(target, QString("%1 Rials").arg(data->getBalance()),
+        painter->setFont(QFont("Pricedown", 18, QFont::Bold));
+        painter->drawText(target, QString("%1 Ø").arg(data->getBalance()),
             QTextOption(Qt::AlignRight | Qt::AlignBottom)
         );
+        painter->setFont(QFont("Segoe UI", 10, QFont::Bold));
         painter->drawText(target, QString("Expires: %1").arg(data->getExpirationDate().toString("yy/MM")),
             QTextOption(Qt::AlignLeft | Qt::AlignBottom)
         );
