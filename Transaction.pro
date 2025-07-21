@@ -21,7 +21,6 @@ HEADERS += \
     include/users/admin.h \
     include/users/customer.h \
     include/users/user.h \
-    include/widgets/abstractpanel.h \
     include/widgets/transferpanel.h \
     include/widgets/useredit.h
 
@@ -44,7 +43,6 @@ SOURCES += \
     src/users/admin.cpp \
     src/users/customer.cpp \
     src/users/user.cpp \
-    src/widgets/abstractpanel.cpp \
     src/widgets/transferpanel.cpp \
     src/widgets/useredit.cpp
 
