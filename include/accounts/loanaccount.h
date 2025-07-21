@@ -9,6 +9,7 @@ public:
     LoanAccount();
 
 public:
+    static quint64 generateID();
     static QString getFilename(quint64 value);
     static LoanAccount loadFromRecord(quint64 value);
 

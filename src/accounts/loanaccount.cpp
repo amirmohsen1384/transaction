@@ -1,8 +1,18 @@
 #include "include/accounts/loanaccount.h"
+#include <QRandomGenerator>
 
 constexpr auto suffix = "lnf";
 
 LoanAccount::LoanAccount() : AbstractAccount() {}
+
+quint64 LoanAccount::generateID()
+{
+    auto generator = QRandomGenerator::global();
+    int number = generator->bounded(int(std::pow(10, GENERAL_DIGITS - 1)), int(std::pow(10, GENERAL_DIGITS) - 1));
+    number *= std::pow(10, VALID_DIGITS);
+    number += LOAN_ID;
+    return number;
+}
 
 QString LoanAccount::getFilename(quint64 value)
 {
