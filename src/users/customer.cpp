@@ -1,4 +1,5 @@
 #include "include/users/customer.h"
+#include "include/account.h"
 
 constexpr auto suffix = "csf";
 
@@ -85,6 +86,15 @@ void Customer::saveKeysToRecord(Key value, const KeyList &data) const
     {
         qDebug() << "Saving Failed: Failed to open file.";
         return;
+    }
+
+    auto target = data;
+    for(const auto &key : target)
+    {
+        auto account = loadFromKey(key);
+        account->setOwner(value);
+        account->saveToRecord(key);
+        qDebug() << QString("Changed the owner of %1 to %2").arg(key).arg(value);
     }
 
     QDataStream stream(&file);
