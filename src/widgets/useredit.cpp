@@ -1,9 +1,7 @@
 #include "include/widgets/useredit.h"
 #include "ui_useredit.h"
 
-UserEdit::UserEdit(QWidget *parent)
-    : QDialog(parent)
-    , ui(new Ui::UserEdit)
+UserEdit::UserEdit(QWidget *parent) : QDialog(parent), ui(new Ui::UserEdit)
 {
     ui->setupUi(this);
 }

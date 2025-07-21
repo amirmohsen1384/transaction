@@ -6,18 +6,33 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>585</width>
-    <height>407</height>
+    <width>642</width>
+    <height>409</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Edit information</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout_4">
-   <item row="0" column="0" colspan="6">
-    <layout class="QGridLayout" name="gridLayout_3">
-     <item row="0" column="0">
-      <widget class="QLabel" name="label">
+  <property name="styleSheet">
+   <string notr="true">background-color:white</string>
+  </property>
+  <layout class="QGridLayout" name="mainLayout">
+   <item row="0" column="0" colspan="7">
+    <layout class="QGridLayout" name="titleLayout">
+     <property name="leftMargin">
+      <number>5</number>
+     </property>
+     <property name="topMargin">
+      <number>5</number>
+     </property>
+     <property name="rightMargin">
+      <number>5</number>
+     </property>
+     <property name="bottomMargin">
+      <number>5</number>
+     </property>
+     <item row="0" column="0" colspan="2">
+      <widget class="QLabel" name="title">
        <property name="sizePolicy">
         <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
          <horstretch>0</horstretch>
@@ -35,8 +50,8 @@
        </property>
       </widget>
      </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="label_2">
+     <item row="1" column="0" colspan="2">
+      <widget class="QLabel" name="description">
        <property name="sizePolicy">
         <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
          <horstretch>0</horstretch>
@@ -53,38 +68,10 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="1" rowspan="2">
-      <widget class="QPushButton" name="pushButton">
-       <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset resource="resources.qrc">
-         <normaloff>:/images/widgets/back.png</normaloff>:/images/widgets/back.png</iconset>
-       </property>
-       <property name="iconSize">
-        <size>
-         <width>48</width>
-         <height>48</height>
-        </size>
-       </property>
-       <property name="flat">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
     </layout>
    </item>
-   <item row="2" column="0" colspan="6">
-    <widget class="QGroupBox" name="gridGroupBox">
-     <property name="title">
-      <string>Password</string>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_2"/>
-    </widget>
-   </item>
-   <item row="3" column="5">
-    <spacer name="horizontalSpacer_2">
+   <item row="3" column="6">
+    <spacer name="rightSpacer">
      <property name="orientation">
       <enum>Qt::Orientation::Horizontal</enum>
      </property>
@@ -96,41 +83,13 @@
      </property>
     </spacer>
    </item>
-   <item row="3" column="0">
-    <spacer name="horizontalSpacer">
-     <property name="orientation">
-      <enum>Qt::Orientation::Horizontal</enum>
+   <item row="1" column="0" colspan="7">
+    <widget class="QGroupBox" name="infoGroupBox">
+     <property name="font">
+      <font>
+       <bold>true</bold>
+      </font>
      </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>40</width>
-       <height>20</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item row="3" column="2" colspan="3">
-    <widget class="QPushButton" name="pushButton_2">
-     <property name="text">
-      <string/>
-     </property>
-     <property name="icon">
-      <iconset resource="resources.qrc">
-       <normaloff>:/images/widgets/check.png</normaloff>:/images/widgets/check.png</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>48</width>
-       <height>48</height>
-      </size>
-     </property>
-     <property name="flat">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="0" colspan="6">
-    <widget class="QGroupBox" name="">
      <property name="title">
       <string>Information</string>
      </property>
@@ -148,7 +107,7 @@
        <number>10</number>
       </property>
       <item row="0" column="1">
-       <widget class="QLabel" name="label_7">
+       <widget class="QLabel" name="lastNameLabel">
         <property name="font">
          <font>
           <bold>true</bold>
@@ -160,7 +119,7 @@
        </widget>
       </item>
       <item row="2" column="1">
-       <widget class="QLabel" name="label_6">
+       <widget class="QLabel" name="userNameLabel">
         <property name="font">
          <font>
           <bold>true</bold>
@@ -172,10 +131,10 @@
        </widget>
       </item>
       <item row="3" column="1">
-       <widget class="QLineEdit" name="lineEdit_4"/>
+       <widget class="QLineEdit" name="userNameEdit"/>
       </item>
       <item row="0" column="0">
-       <widget class="QLabel" name="label_3">
+       <widget class="QLabel" name="firstNameLabel">
         <property name="font">
          <font>
           <bold>true</bold>
@@ -187,7 +146,7 @@
        </widget>
       </item>
       <item row="2" column="0">
-       <widget class="QLabel" name="label_5">
+       <widget class="QLabel" name="nationalCodeLabel">
         <property name="font">
          <font>
           <bold>true</bold>
@@ -199,21 +158,149 @@
        </widget>
       </item>
       <item row="1" column="1">
-       <widget class="QLineEdit" name="lineEdit_2"/>
+       <widget class="QLineEdit" name="lastNameEdit"/>
       </item>
       <item row="1" column="0">
-       <widget class="QLineEdit" name="lineEdit_5"/>
+       <widget class="QLineEdit" name="firstNameEdit"/>
       </item>
       <item row="3" column="0">
-       <widget class="QLineEdit" name="lineEdit_3"/>
+       <widget class="QLineEdit" name="nationalCodeEdit"/>
       </item>
      </layout>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <spacer name="leftSpacer">
+     <property name="orientation">
+      <enum>Qt::Orientation::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>40</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="2" column="0" colspan="7">
+    <widget class="QGroupBox" name="authorizationGroupBox">
+     <property name="font">
+      <font>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="title">
+      <string>Authorization</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="0" column="0">
+       <widget class="QLabel" name="passwordLabel">
+        <property name="font">
+         <font>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Password</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QWidget" name="passwordEdit" native="true">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="3" column="2" colspan="3">
+    <widget class="QPushButton" name="okButton">
+     <property name="toolTip">
+      <string>OK</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="../../resources.qrc">
+       <normaloff>:/images/widgets/accept.png</normaloff>:/images/widgets/accept.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>32</width>
+       <height>32</height>
+      </size>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="5">
+    <widget class="QPushButton" name="cancelButton">
+     <property name="toolTip">
+      <string>Cancel</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="../../resources.qrc">
+       <normaloff>:/images/widgets/reject.png</normaloff>:/images/widgets/reject.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>32</width>
+       <height>32</height>
+      </size>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
     </widget>
    </item>
   </layout>
  </widget>
  <resources>
-  <include location="resources.qrc"/>
+  <include location="../../resources.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>cancelButton</sender>
+   <signal>clicked()</signal>
+   <receiver>UserEdit</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>327</x>
+     <y>361</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>239</x>
+     <y>390</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>okButton</sender>
+   <signal>clicked()</signal>
+   <receiver>UserEdit</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>300</x>
+     <y>360</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>103</x>
+     <y>389</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
