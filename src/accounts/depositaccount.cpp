@@ -4,6 +4,11 @@ constexpr auto suffix = "dpf";
 
 DepositAccount::DepositAccount() : AbstractAccount() {}
 
+QString DepositAccount::getFilename(quint64 value)
+{
+    return QString("%1.%2").arg(value).arg(suffix);
+}
+
 void DepositAccount::saveToRecord(quint64 value) const
 {
     if(!Identifier::isValid(value, Account::Deposit))
@@ -12,8 +17,7 @@ void DepositAccount::saveToRecord(quint64 value) const
         return;
     }
 
-    const QString fileName = QString("%1.%2").arg(value).arg(suffix);
-    QFile file(Storage::depositAccount().absoluteFilePath(fileName));
+    QFile file(Storage::depositAccount().absoluteFilePath(getFilename(value)));
     qDebug() << "Saving Deposit Account:" << value;
 
     if(!file.open(QFile::WriteOnly))

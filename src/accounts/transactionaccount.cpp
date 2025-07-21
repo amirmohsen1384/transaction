@@ -4,6 +4,11 @@ constexpr auto suffix = "trf";
 
 TransactionAccount::TransactionAccount() : AbstractAccount() {}
 
+QString TransactionAccount::getFilename(quint64 value)
+{
+    return QString("%1.%2").arg(value).arg(suffix);
+}
+
 float TransactionAccount::profit() const
 {
     return 0 * this->balance;
@@ -17,8 +22,7 @@ TransactionAccount TransactionAccount::loadFromRecord(quint64 value)
         return TransactionAccount();
     }
 
-    const QString fileName = QString("%1.%2").arg(value).arg(suffix);
-    QFile file(Storage::transactionAccount().absoluteFilePath(fileName));
+    QFile file(Storage::transactionAccount().absoluteFilePath(getFilename(value)));
     qDebug() << "Loading Transaction Account:" << value;
 
     if(!file.open(QFile::ReadOnly))

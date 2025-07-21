@@ -4,6 +4,11 @@ constexpr auto suffix = "lnf";
 
 LoanAccount::LoanAccount() : AbstractAccount() {}
 
+QString LoanAccount::getFilename(quint64 value)
+{
+    return QString("%1.%2").arg(value).arg(suffix);
+}
+
 float LoanAccount::profit() const
 {
     return balance * 0.01;
@@ -17,8 +22,7 @@ LoanAccount LoanAccount::loadFromRecord(quint64 value)
         return LoanAccount();
     }
 
-    const QString fileName = QString("%1.%2").arg(value).arg(suffix);
-    QFile file(Storage::loanAccount().absoluteFilePath(fileName));
+    QFile file(Storage::loanAccount().absoluteFilePath(getFilename(value)));
     qDebug() << "Loading Loan Account:" << value;
 
     if(!file.open(QFile::ReadOnly))

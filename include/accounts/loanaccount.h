@@ -9,6 +9,7 @@ public:
     LoanAccount();
 
 public:
+    static QString getFilename(quint64 value);
     static LoanAccount loadFromRecord(quint64 value);
 
     virtual float profit() const override;
