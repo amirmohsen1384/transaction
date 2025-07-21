@@ -1,11 +1,11 @@
-#ifndef ACCOUNTLISTMODEL_H
-#define ACCOUNTLISTMODEL_H
+#ifndef CUSTOMERMODEL_H
+#define CUSTOMERMODEL_H
 
 #include "include/account.h"
 #include <QAbstractListModel>
 #include <QColor>
 
-class AccountListModel : public QAbstractListModel
+class CustomerModel : public QAbstractListModel
 {
     Q_OBJECT
 private slots:
@@ -14,17 +14,17 @@ private slots:
 public:
     struct AccountData
     {
-        Key id;
-        QColor background;
+        Key identifier;
         std::shared_ptr<AbstractAccount> data;
     };
 
 public:
-    explicit AccountListModel(QObject *parent = nullptr);
-    explicit AccountListModel(const Key &identifier, QObject *parent = nullptr);
+    explicit CustomerModel(QObject *parent = nullptr);
+    explicit CustomerModel(const Key &identifier, QObject *parent = nullptr);
 
     virtual int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
+    virtual QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
 public:
     Key getIdentifier() const;
@@ -40,4 +40,4 @@ private:
     QList<AccountData> container;
 };
 
-#endif // ACCOUNTLISTMODEL_H
+#endif // CUSTOMERMODEL_H
