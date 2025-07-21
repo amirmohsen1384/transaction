@@ -16,14 +16,21 @@ QSize AccountDelegate::sizeHint(const QStyleOptionViewItem &option, const QModel
 void AccountDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
     auto region = option.rect;
-    region.marginsRemoved(margins);
+    if(option.state.testFlag(QStyle::State_MouseOver))
+    {
+        painter->fillRect(option.rect, QColor(210, 220, 220));
+    }
+
+    region = region.marginsRemoved(margins);
+    painter->setRenderHint(QPainter::Antialiasing, true);
+
     auto data = qvariant_cast<std::shared_ptr<AbstractAccount>>(index.data(Qt::UserRole));
     {
         auto pen = painter->pen();
         auto brush = painter->brush();
 
         painter->setPen(Qt::NoPen);
-        painter->setBrush(index.data(Qt::BackgroundRole).value<QColor>());
+        painter->setBrush(QColor(160, 240, 150));
 
         painter->drawRoundedRect(region, 20.0, 15.0);
         painter->setBrush(brush);
@@ -36,13 +43,13 @@ void AccountDelegate::paint(QPainter *painter, const QStyleOptionViewItem &optio
         painter->setFont(font);
     }
     {
-        region.marginsRemoved(margins);
+        auto target = region.marginsRemoved(margins);
         auto font = painter->font();
-        painter->setFont(QFont("Segoe UI", 12, QFont::Bold));
-        painter->drawText(region, QString("%1 Rials").arg(data->getBalance()),
+        painter->setFont(QFont("Segoe UI", 10, QFont::Bold));
+        painter->drawText(target, QString("%1 Rials").arg(data->getBalance()),
             QTextOption(Qt::AlignRight | Qt::AlignBottom)
         );
-        painter->drawText(region, QString("Expires: %1").arg(data->getExpirationDate().toString("yyyy/MM/dd")),
+        painter->drawText(target, QString("Expires: %1").arg(data->getExpirationDate().toString("yy/MM")),
             QTextOption(Qt::AlignLeft | Qt::AlignBottom)
         );
         painter->setFont(font);
