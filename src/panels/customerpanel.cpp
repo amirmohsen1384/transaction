@@ -1,4 +1,4 @@
-#include "customerpanel.h"
+#include "include/panels/customerpanel.h"
 #include "ui_customerpanel.h"
 
 CustomerPanel::CustomerPanel(QWidget *parent)
