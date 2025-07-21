@@ -7,6 +7,7 @@ AccountView::AccountView(QWidget *parent) : QDialog(parent), ui(new Ui::AccountV
     ui->setupUi(this);
     ui->primaryPasswordView->setReadOnly(true);
     ui->secondaryPasswordView->setReadOnly(true);
+    connect(this, &AccountView::keyChanged, this, &AccountView::loadAccount);
 }
 
 AccountView::~AccountView()
@@ -30,6 +31,7 @@ void AccountView::loadAccount(const Key &value)
     auto account = loadFromKey(value);
     if(account == nullptr)
     {
+        qDebug() << QString("Failed to load %1. It was null").arg(value);
         return;
     }
     switch(Identifier::accountMode(value))
@@ -60,14 +62,14 @@ void AccountView::loadAccount(const Key &value)
     }
     }
     ui->cardNumberLabel->setText(account->getCardNumber());
-    ui->primaryPasswordView->setText(QString::number(account->getPrimaryPassword()));
-    ui->secondaryPasswordView->setText(QString::number(account->getSecondaryPassword()));
+    ui->primaryPasswordView->setPassword(QString::number(account->getPrimaryPassword()));
+    ui->secondaryPasswordView->setPassword(QString::number(account->getSecondaryPassword()));
     ui->cvv2Label->setText(QString::number(account->getCvv2()));
-    ui->balanceLabel->setText(QString::number(account->getBalance(), 'f', 2));
+    ui->balanceView->setText(QString::number(account->getBalance(), 'f', 2));
     ui->expirationDateLabel->setText(account->getExpirationDate().toString(Qt::ISODate));
-    ui->transferredBalanceLabel->setText(QString::number(account->getTransferredBalance(), 'f', 2));
+    ui->dailyTransferredView->setText(QString::number(account->getTransferredBalance(), 'f', 2));
     ui->shabaNumberLabel->setText(account->getShabaNumber());
-    ui->lastTransactionDateLabel->setText(account->getLastTransactionDate().toString(Qt::ISODate));
+    ui->lastTransactionView->setText(account->getLastCashMoved().toString(Qt::ISODate));
     ui->shabaNumberLabel->setText(account->getShabaNumber());
     ui->accountNumberLabel->setText(QString::number(value));
     
@@ -75,4 +77,5 @@ void AccountView::loadAccount(const Key &value)
 
 AccountView::AccountView(const Key &number, QWidget *parent) : AccountView(parent)
 {
+    setKey(number);
 }
