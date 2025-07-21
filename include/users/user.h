@@ -9,8 +9,8 @@ class User : public Entity
 public:
     User();
 
-    quint64 getNationalCode() const;
-    void setNationalCode(quint64 value);
+    QString getNationalCode() const;
+    void setNationalCode(const QString &value);
 
     QString getFirstName() const;
     void setFirstName(const QString &value);
@@ -33,7 +33,7 @@ public:
     QString getName() const;
 
 private:
-    quint64 nationalCode;
+    QString nationalCode;
     QString firstName;
     QString lastName;
     QString userName;

@@ -3,12 +3,12 @@
 User::User() : Entity()
 {}
 
-quint64 User::getNationalCode() const
+QString User::getNationalCode() const
 {
     return nationalCode;
 }
 
-void User::setNationalCode(quint64 value)
+void User::setNationalCode(const QString &value)
 {
     nationalCode = value;
 }
