@@ -23,10 +23,12 @@ HEADERS += \
     include/users/user.h \
     include/widgets/abstractpanel.h \
     include/widgets/transferpanel.h \
-    include/widgets/useredit.h
+    include/widgets/useredit.h \
+    include/widgets/passwordeditor.h
 
 
 SOURCES += \
+    src/widgets/passwordeditor.cpp \
     src/widgets/accountview.cpp \
     src/elements/passwordedit.cpp \
     src/panels/customerpanel.cpp \
@@ -53,6 +55,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 FORMS += \
+    ui/widgets/passwordeditor.ui \
     ui/widgets/accountview.ui \
     ui/panels/customerpanel.ui \
     ui/widgets/transferpanel.ui \
