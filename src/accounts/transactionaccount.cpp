@@ -1,8 +1,17 @@
 #include "include/accounts/transactionaccount.h"
+#include <QRandomGenerator>
 
 constexpr auto suffix = "trf";
 
 TransactionAccount::TransactionAccount() : AbstractAccount() {}
+
+quint64 TransactionAccount::generateID()
+{
+    auto generator = QRandomGenerator::global();
+    int number = generator->bounded(int(std::pow(10, GENERAL_DIGITS - 1)), int(std::pow(10, GENERAL_DIGITS) - 1));
+    number *= std::pow(10, VALID_DIGITS);
+    return number + TRANSACTION_ID;
+}
 
 QString TransactionAccount::getFilename(quint64 value)
 {
