@@ -149,18 +149,22 @@ Account Identifier::accountMode(const Key &value)
 {
     if(Identifier::isValid(value, Account::Deposit))
     {
+        qDebug() << QString("%1 is a deposit account").arg(value);
         return Account::Deposit;
     }
     else if(Identifier::isValid(value, Account::Loan))
     {
+        qDebug() << QString("%1 is a loan account.").arg(value);
         return Account::Loan;
     }
     else if(Identifier::isValid(value, Account::Transaction))
     {
+        qDebug() << QString("%1 is a transaction account").arg(value);
         return Account::Transaction;
     }
     else
     {
+        qDebug() << QString("No account related to %1 found.").arg(value);
         return Account::None;
     }
 }
