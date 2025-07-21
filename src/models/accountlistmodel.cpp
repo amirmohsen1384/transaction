@@ -38,7 +38,9 @@ void AccountListModel::updateData()
 }
 
 AccountListModel::AccountListModel(QObject *parent) : QAbstractListModel(parent)
-{}
+{
+    connect(this, &AccountListModel::identifierChanged, this, &AccountListModel::updateData);
+}
 
 int AccountListModel::rowCount(const QModelIndex &parent) const
 {
