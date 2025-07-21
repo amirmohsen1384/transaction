@@ -29,7 +29,7 @@ signals:
 
 private:
     Key value;
-    Ui::AccountView *ui;
+    std::unique_ptr<Ui::AccountView> ui;
 };
 
 #endif // ACCOUNTVIEW_H

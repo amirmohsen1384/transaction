@@ -2,18 +2,19 @@
 #include "include/account.h"
 #include "ui_accountview.h"
 
-AccountView::AccountView(QWidget *parent) : QDialog(parent), ui(new Ui::AccountView)
+AccountView::AccountView(QWidget *parent) : QDialog(parent)
 {
+    ui = std::make_unique<Ui::AccountView>();
     ui->setupUi(this);
+
     ui->primaryPasswordView->setReadOnly(true);
     ui->secondaryPasswordView->setReadOnly(true);
+
     connect(this, &AccountView::keyChanged, this, &AccountView::loadAccount);
+    setFixedSize(QSize(560, 720));
 }
 
-AccountView::~AccountView()
-{
-    delete ui;
-}
+AccountView::~AccountView() {}
 
 Key AccountView::getKey() const
 {
@@ -62,17 +63,28 @@ void AccountView::loadAccount(const Key &value)
     }
     }
     ui->cardNumberLabel->setText(account->getCardNumber());
+
     ui->primaryPasswordView->setPassword(QString::number(account->getPrimaryPassword()));
+
     ui->secondaryPasswordView->setPassword(QString::number(account->getSecondaryPassword()));
-    ui->cvv2Label->setText(QString::number(account->getCvv2()));
+
+    ui->cvv2View->setText(QString::number(account->getCvv2()));
+
     ui->balanceView->setText(QString::number(account->getBalance(), 'f', 2));
-    ui->expirationDateLabel->setText(account->getExpirationDate().toString(Qt::ISODate));
+
+    ui->expirationDateView->setText(account->getExpirationDate().toString());
+
     ui->dailyTransferredView->setText(QString::number(account->getTransferredBalance(), 'f', 2));
+
     ui->shabaNumberLabel->setText(account->getShabaNumber());
-    ui->lastTransactionView->setText(account->getLastCashMoved().toString(Qt::ISODate));
+
+    ui->lastTransactionView->setText(account->getLastCashMoved().toString());
+
     ui->shabaNumberLabel->setText(account->getShabaNumber());
+
     ui->accountNumberLabel->setText(QString::number(value));
-    
+
+    setWindowTitle(QString("%1 - View Your Account").arg(value));
 }
 
 AccountView::AccountView(const Key &number, QWidget *parent) : AccountView(parent)
