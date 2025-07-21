@@ -8,6 +8,9 @@ AccountDelegate::AccountDelegate(QObject *parent) : QStyledItemDelegate(parent) 
 
 QSize AccountDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
+    Q_UNUSED(index)
+    Q_UNUSED(option)
+
     int width = 300;
     int height = static_cast<int>(width / 1.586);
     return QSize(width + margins.left() + margins.right(), height + margins.top() + margins.bottom());
