@@ -1,4 +1,4 @@
-#include "include/widgets/transferpanel.h"
+#include "include/dialogs/transferpanel.h"
 #include "include/users/customer.h"
 #include "ui_transferpanel.h"
 #include "include/account.h"

@@ -1,4 +1,4 @@
-#include "include/widgets/useredit.h"
+#include "include/dialogs/useredit.h"
 #include "ui_useredit.h"
 
 UserEdit::UserEdit(QWidget *parent) : QDialog(parent)

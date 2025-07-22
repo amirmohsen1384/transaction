@@ -1,4 +1,4 @@
-#include "include/widgets/accountpasswordeditor.h"
+#include "include/dialogs/accountpasswordeditor.h"
 #include "ui_accountpasswordeditor.h"
 
 AccountPasswordEditor::AccountPasswordEditor(QWidget *parent) : QDialog(parent)

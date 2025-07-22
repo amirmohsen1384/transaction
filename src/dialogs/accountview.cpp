@@ -1,4 +1,4 @@
-#include "include/widgets/accountview.h"
+#include "include/dialogs/accountview.h"
 #include "include/account.h"
 #include "ui_accountview.h"
 

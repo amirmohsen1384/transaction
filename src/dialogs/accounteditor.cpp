@@ -1,4 +1,4 @@
-#include "include/widgets/accounteditor.h"
+#include "include/dialogs/accounteditor.h"
 #include "ui_accounteditor.h"
 
 AccountEditor::AccountEditor(QWidget *parent) : QDialog(parent), ui(new Ui::AccountEditor)
