@@ -29,7 +29,7 @@ QString UserEdit::getUserName() const
 
 QString UserEdit::getPassword() const
 {
-    return ui->passwordEdit->text();
+    return ui->passwordEdit->password();
 }
 
 int UserEdit::getAge() const
@@ -63,7 +63,7 @@ void UserEdit::setUserName(const QString &value)
 
 void UserEdit::setPassword(const QString &value)
 {
-    ui->passwordEdit->setText(value);
+    ui->passwordEdit->setPassword(value);
     emit passwordChanged(value);
 }
 
@@ -75,5 +75,4 @@ void UserEdit::setAge(int value)
 
 UserEdit::~UserEdit()
 {
-    delete ui;
 }

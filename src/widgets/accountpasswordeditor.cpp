@@ -1,4 +1,4 @@
-#include "accountpasswordeditor.h"
+#include "include/widgets/accountpasswordeditor.h"
 #include "ui_accountpasswordeditor.h"
 
 AccountPasswordEditor::AccountPasswordEditor(QWidget *parent) : QDialog(parent)
@@ -6,30 +6,30 @@ AccountPasswordEditor::AccountPasswordEditor(QWidget *parent) : QDialog(parent)
     ui = std::make_unique<Ui::AccountPasswordEditor>();
     ui->setupUi(this);
 
-    connect(ui->primaryPasswordEdit, &QLineEdit::textChanged, this, &AccountPasswordEditor::primaryPasswordChanged);
-    connect(ui->secondaryPasswordEdit, &QLineEdit::textChanged, this, &AccountPasswordEditor::secondaryPasswordChanged);
+    connect(ui->primaryPasswordEdit, &PasswordEdit::passwordChanged, this, &AccountPasswordEditor::primaryPasswordChanged);
+    connect(ui->secondaryPasswordEdit, &PasswordEdit::passwordChanged, this, &AccountPasswordEditor::secondaryPasswordChanged);
 }
 
 AccountPasswordEditor::~AccountPasswordEditor() {}
 
 QString AccountPasswordEditor::getPrimaryPassword() const
 {
-    return ui->primaryPasswordLineEdit->text();
+    return ui->primaryPasswordEdit->password();
 }
 
 QString AccountPasswordEditor::getSecondaryPassword() const
 {
-    return ui->secondaryPasswordLineEdit->text();
+    return ui->secondaryPasswordEdit->password();
 }
 
 void AccountPasswordEditor::setPrimaryPassword(const QString &password)
 {
-    ui->primaryPasswordLineEdit->setText(password);
+    ui->primaryPasswordEdit->setPassword(password);
     emit primaryPasswordChanged(password);
 }
 
 void AccountPasswordEditor::setSecondaryPassword(const QString &password)
 {
-    ui->secondaryPasswordLineEdit->setText(password);
+    ui->secondaryPasswordEdit->setPassword(password);
     emit secondaryPasswordChanged(password);
 }
