@@ -23,6 +23,10 @@ void AccountDelegate::paint(QPainter *painter, const QStyleOptionViewItem &optio
     {
         painter->fillRect(option.rect, QColor(210, 220, 220));
     }
+    else if(option.state.testFlag(QStyle::State_Selected))
+    {
+        painter->fillRect(option.rect, QColor(220, 255, 2));
+    }
 
     region = region.marginsRemoved(margins);
     painter->setRenderHint(QPainter::Antialiasing, true);
@@ -48,7 +52,7 @@ void AccountDelegate::paint(QPainter *painter, const QStyleOptionViewItem &optio
     {
         auto target = region.marginsRemoved(margins);
         auto font = painter->font();
-        painter->setFont(QFont("Pricedown", 18, QFont::Bold));
+        painter->setFont(QFont("Segoe Print", 14, QFont::Bold));
         painter->drawText(target, QString("%1 Ø").arg(data->getBalance()),
             QTextOption(Qt::AlignRight | Qt::AlignBottom)
         );
