@@ -40,6 +40,11 @@ CustomerModel::CustomerModel(QObject *parent) : QAbstractListModel(parent)
     connect(this, &CustomerModel::identifierChanged, this, &CustomerModel::updateData);
 }
 
+CustomerModel::CustomerModel(const Key &identifier, QObject *parent) : CustomerModel(parent)
+{
+    setIdentifier(identifier);
+}
+
 int CustomerModel::rowCount(const QModelIndex &parent) const
 {
     if (parent.isValid())
