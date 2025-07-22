@@ -9,13 +9,14 @@ class CashTransaction : public QObject
     Q_OBJECT
 public:
     enum Status {Pending = 0, Successful, Failed};
-
+    QDateTime eventDateTime;
 public:
-
     Q_DISABLE_COPY_MOVE(CashTransaction)
     explicit CashTransaction(QObject *parent = nullptr);
     CashTransaction::Status getStatus() const;
     long int getDynamicPassword() const;
+    QDateTime getEventDateTime() const;
+    QImage generateImage() const;
     Key getDestinationId() const;
     long int getPassword() const;
     double getAmount() const;
