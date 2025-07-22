@@ -8,5 +8,7 @@
         <file>images/widgets/show-password.png</file>
         <file>images/widgets/accept.png</file>
         <file>images/widgets/reject.png</file>
+        <file>images/panels/password.png</file>
+        <file>images/panels/cash.png</file>
     </qresource>
 </RCC>
