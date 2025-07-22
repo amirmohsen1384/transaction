@@ -16,22 +16,31 @@ namespace Ui
 class TransferPanel : public QDialog
 {
     Q_OBJECT
+private:
+    void updateModel();
+
 public:
-    explicit TransferPanel(const Key &sourceOwner, QWidget *parent = nullptr);
+    explicit TransferPanel(QWidget *parent = nullptr);
     ~TransferPanel();
 
+    CustomerModel* model();
+
 public slots:
-    virtual void accept() override;
     void updateOwner(const QString &value);
 
+    virtual void accept() override;
+    virtual void setModel(CustomerModel *model);
+
 private:
-    CashTransaction transaction;
     QIntValidator cvv2Validator;
-    CustomerModel sourceModel;
     QIntValidator targetValidator;
-    AccountDelegate sourceDelegate;
     QIntValidator passwordValidator;
     QDoubleValidator amountValidator;
+
+    CashTransaction transaction;
+    AccountDelegate sourceDelegate;
+    CustomerModel *sourceModel = nullptr;
+
     std::unique_ptr<Ui::TransferPanel> ui;
 };
 

@@ -4,7 +4,7 @@
 #include "include/account.h"
 #include <QMessageBox>
 
-TransferPanel::TransferPanel(const Key &sourceOwner, QWidget *parent) : QDialog(parent)
+TransferPanel::TransferPanel(QWidget *parent) : QDialog(parent)
 {
     ui = std::make_unique<Ui::TransferPanel>();
     ui->setupUi(this);
@@ -14,25 +14,29 @@ TransferPanel::TransferPanel(const Key &sourceOwner, QWidget *parent) : QDialog(
 
     targetValidator.setBottom(0);
     targetValidator.setTop(std::pow(10, 7) - 1);
+
     ui->ownerLabel->setVisible(false);
     ui->cvv2Edit->setValidator(&cvv2Validator);
     ui->amountEdit->setValidator(&amountValidator);
     ui->destinationEdit->setValidator(&targetValidator);
 
-    if(!Storage::customerFolder(sourceOwner).exists())
-    {
-        qDebug() << "The transfer panel may lead to unexpected result with an invalid ID";
-    }
-
     setFixedSize(QSize(600, 410));
-
-    sourceModel.setIdentifier(sourceOwner);
-    ui->sourceEdit->setModel(&sourceModel);
     ui->sourceEdit->setItemDelegate(&sourceDelegate);
-    setWindowTitle(QString("%1 - Transfer your money").arg(sourceModel.headerData().value<Customer>().getName()));
+}
+
+void TransferPanel::updateModel()
+{
+    ui->sourceEdit->setModel(sourceModel);
+    const auto name = sourceModel->headerData().value<Customer>().getName();
+    setWindowTitle(QString("%1 - Transfer your money").arg(name));
 }
 
 TransferPanel::~TransferPanel() {}
+
+CustomerModel *TransferPanel::model()
+{
+    return sourceModel;
+}
 
 void TransferPanel::updateOwner(const QString &value)
 {
@@ -129,4 +133,10 @@ void TransferPanel::accept()
     {
         QMessageBox::critical(this, "Error", e.what());
     }
+}
+
+void TransferPanel::setModel(CustomerModel *model)
+{
+    this->sourceModel = model;
+    updateModel();
 }
