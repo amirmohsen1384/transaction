@@ -3,6 +3,8 @@
 #include "ui_transferpanel.h"
 #include "include/account.h"
 #include <QMessageBox>
+#include <QFileDialog>
+#include <QImageWriter>
 
 TransferPanel::TransferPanel(QWidget *parent) : QDialog(parent)
 {
@@ -36,6 +38,45 @@ TransferPanel::~TransferPanel() {}
 CustomerModel *TransferPanel::model()
 {
     return sourceModel;
+}
+
+void TransferPanel::saveResult()
+{
+    QString fileName = browseImage();
+    if(!fileName.isEmpty())
+    {
+        auto image = transaction.generateImage();
+        QImageWriter writer(fileName);
+        if(writer.canWrite())
+        {
+            writer.write(image);
+        }
+        else
+        {
+            QMessageBox error(this);
+            error.setWindowTitle("Error");
+            error.setText("The image cannot be saved in this location.");
+            error.setInformativeText("Please select another location to save.");
+            error.exec();
+            saveResult();
+        }
+    }
+}
+
+QString TransferPanel::browseImage()
+{
+    QFileDialog dialog(this);
+    dialog.setWindowTitle("Select a location to continue");
+    dialog.setAcceptMode(QFileDialog::AcceptSave);
+    dialog.setDirectory(QDir::home());
+    if(dialog.exec() == QFileDialog::Accepted)
+    {
+        return dialog.selectedFiles().at(0);
+    }
+    else
+    {
+        return QString();
+    }
 }
 
 void TransferPanel::updateOwner(const QString &value)
@@ -125,8 +166,12 @@ void TransferPanel::accept()
         message.setWindowTitle("Successful");
         message.setIcon(QMessageBox::Information);
         message.setText("Transaction has been successful!");
-        message.exec();
-
+        message.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+        message.setInformativeText("Would you like to generate an image of the result?");
+        if(message.exec() == QMessageBox::Yes)
+        {
+            saveResult();
+        }
         QDialog::accept();
     }
     catch(const std::exception &e)

@@ -26,21 +26,20 @@ public:
     CustomerModel* model();
 
 public slots:
-    void updateOwner(const QString &value);
-
+    void saveResult();
+    QString browseImage();
     virtual void accept() override;
+    void updateOwner(const QString &value);
     virtual void setModel(CustomerModel *model);
 
 private:
+    CashTransaction transaction;
     QIntValidator cvv2Validator;
     QIntValidator targetValidator;
+    AccountDelegate sourceDelegate;
     QIntValidator passwordValidator;
     QDoubleValidator amountValidator;
-
-    CashTransaction transaction;
-    AccountDelegate sourceDelegate;
     CustomerModel *sourceModel = nullptr;
-
     std::unique_ptr<Ui::TransferPanel> ui;
 };
 
