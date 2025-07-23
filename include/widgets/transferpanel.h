@@ -21,13 +21,15 @@ public:
     ~TransferPanel();
 
 public slots:
+    void saveResult();
+    QString browseImage();
     virtual void accept() override;
     void updateOwner(const QString &value);
 
 private:
+    CustomerModel sourceModel;
     CashTransaction transaction;
     QIntValidator cvv2Validator;
-    CustomerModel sourceModel;
     QIntValidator targetValidator;
     AccountDelegate sourceDelegate;
     QIntValidator passwordValidator;
