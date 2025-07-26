@@ -3,6 +3,8 @@
 
 #include "abstractaccount.h"
 
+constexpr auto transaction_suffix = "trf";
+
 class TransactionAccount : public AbstractAccount
 {
 public:

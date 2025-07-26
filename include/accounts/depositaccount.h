@@ -3,6 +3,8 @@
 
 #include "abstractaccount.h"
 
+constexpr auto deposit_suffix = "dpf";
+
 class DepositAccount : public AbstractAccount
 {
 public:

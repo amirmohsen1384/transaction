@@ -3,6 +3,8 @@
 
 #include "abstractaccount.h"
 
+constexpr auto loan_suffix = "lnf";
+
 class LoanAccount : public AbstractAccount
 {
 public:

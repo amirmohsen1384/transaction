@@ -1,8 +1,6 @@
 #include "include/accounts/depositaccount.h"
 #include <QRandomGenerator>
 
-constexpr auto suffix = "dpf";
-
 DepositAccount::DepositAccount() : AbstractAccount() {}
 
 quint64 DepositAccount::generateID()
@@ -16,7 +14,7 @@ quint64 DepositAccount::generateID()
 
 QString DepositAccount::getFilename(quint64 value)
 {
-    return QString("%1.%2").arg(value).arg(suffix);
+    return QString("%1.%2").arg(value).arg(deposit_suffix);
 }
 
 void DepositAccount::saveToRecord(quint64 value) const
@@ -61,7 +59,7 @@ DepositAccount DepositAccount::loadFromRecord(quint64 value)
         return DepositAccount();
     }
 
-    const QString fileName = QString("%1.%2").arg(value).arg(suffix);
+    const QString fileName = QString("%1.%2").arg(value).arg(deposit_suffix);
     QFile file(Storage::depositAccount().absoluteFilePath(fileName));
     qDebug() << "Loading Deposit Account: " << value;
 

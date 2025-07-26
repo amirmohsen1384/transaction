@@ -1,8 +1,6 @@
 #include "include/accounts/transactionaccount.h"
 #include <QRandomGenerator>
 
-constexpr auto suffix = "trf";
-
 TransactionAccount::TransactionAccount() : AbstractAccount() {}
 
 quint64 TransactionAccount::generateID()
@@ -15,7 +13,7 @@ quint64 TransactionAccount::generateID()
 
 QString TransactionAccount::getFilename(quint64 value)
 {
-    return QString("%1.%2").arg(value).arg(suffix);
+    return QString("%1.%2").arg(value).arg(transaction_suffix);
 }
 
 float TransactionAccount::profit() const
@@ -64,7 +62,7 @@ void TransactionAccount::saveToRecord(quint64 value) const
         return;
     }
 
-    const QString fileName = QString("%1.%2").arg(value).arg(suffix);
+    const QString fileName = QString("%1.%2").arg(value).arg(transaction_suffix);
     QFile file(Storage::transactionAccount().absoluteFilePath(fileName));
     qDebug() << "Saving Transaction Account: " << value;
 

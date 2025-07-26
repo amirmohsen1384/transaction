@@ -1,8 +1,6 @@
 #include "include/accounts/loanaccount.h"
 #include <QRandomGenerator>
 
-constexpr auto suffix = "lnf";
-
 LoanAccount::LoanAccount() : AbstractAccount() {}
 
 quint64 LoanAccount::generateID()
@@ -16,7 +14,7 @@ quint64 LoanAccount::generateID()
 
 QString LoanAccount::getFilename(quint64 value)
 {
-    return QString("%1.%2").arg(value).arg(suffix);
+    return QString("%1.%2").arg(value).arg(loan_suffix);
 }
 
 float LoanAccount::profit() const
@@ -65,7 +63,7 @@ void LoanAccount::saveToRecord(quint64 value) const
         return;
     }
 
-    const QString fileName = QString("%1.%2").arg(value).arg(suffix);
+    const QString fileName = QString("%1.%2").arg(value).arg(loan_suffix);
     QFile file(Storage::loanAccount().absoluteFilePath(fileName));
     qDebug() << "Saving Loan Account: " << value;
 
