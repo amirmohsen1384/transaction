@@ -1,8 +1,6 @@
 #include "include/users/admin.h"
 #include <QRandomGenerator>
 
-constexpr auto suffix = "adf";
-
 Admin::Admin() : User() {}
 
 quint64 Admin::generateID()
@@ -18,7 +16,7 @@ Admin Admin::loadFromRecord(quint64 value)
         return Admin();
     }
 
-    const QString fileName = QString("%1.%2").arg(value).arg(suffix);
+    const QString fileName = QString("%1.%2").arg(value).arg(admin_suffix);
     QFile file(Storage::admin().absoluteFilePath(fileName));
     qDebug() << "Loading Adminstrator Data:" << value;
 
@@ -52,7 +50,7 @@ void Admin::saveToRecord(quint64 value) const
         return;
     }
 
-    const QString fileName = QString("%1.%2").arg(value).arg(suffix);
+    const QString fileName = QString("%1.%2").arg(value).arg(admin_suffix);
     QFile file(Storage::admin().absoluteFilePath(fileName));
     qDebug() << "Saving Adminstrator Data:" << value;
 

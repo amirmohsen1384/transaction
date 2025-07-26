@@ -3,6 +3,8 @@
 
 #include "user.h"
 
+constexpr auto admin_suffix = "adf";
+
 class Admin : public User
 {
 public:

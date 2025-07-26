@@ -3,6 +3,8 @@
 
 #include "user.h"
 
+constexpr auto customer_suffix = "csf";
+
 class Customer : public User
 {
 public:

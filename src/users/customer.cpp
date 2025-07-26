@@ -2,8 +2,6 @@
 #include "include/account.h"
 #include <QRandomGenerator>
 
-constexpr auto suffix = "csf";
-
 Customer::Customer() : User() {}
 
 quint64 Customer::generateID()
@@ -19,7 +17,7 @@ void Customer::saveToRecord(quint64 value) const
         return;
     }
 
-    const auto fileName = Storage::customerFolder(value).absoluteFilePath(QString("metadata.%1").arg(suffix));
+    const auto fileName = Storage::customerFolder(value).absoluteFilePath(QString("metadata.%1").arg(customer_suffix));
 
     QFile file(fileName);
     qDebug() << "Saving Customer Data:" << value;
@@ -50,7 +48,7 @@ KeyList Customer::loadKeysFromRecord(Key value)
         return KeyList();
     }
 
-    const auto fileName = Storage::customerFolder(value).absoluteFilePath(QString("keys.%1").arg(suffix));
+    const auto fileName = Storage::customerFolder(value).absoluteFilePath(QString("keys.%1").arg(customer_suffix));
     QFile file(fileName);
     qDebug() << "Loading Customer Keys:" << value;
 
