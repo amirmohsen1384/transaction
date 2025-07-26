@@ -82,7 +82,7 @@ void Customer::saveKeysToRecord(Key value, const KeyList &data) const
         return;
     }
 
-    const auto fileName = Storage::customerFolder(value).absoluteFilePath(QString("keys.%1").arg(suffix));
+    const auto fileName = Storage::customerFolder(value).absoluteFilePath(QString("keys.%1").arg(customer_suffix));
     QFile file(fileName);
     qDebug() << "Saving Customer Keys:" << value;
 
@@ -121,7 +121,7 @@ Customer Customer::loadFromRecord(quint64 value)
         return Customer();
     }
 
-    const auto fileName = Storage::customerFolder(value).absoluteFilePath(QString("metadata.%1").arg(suffix));
+    const auto fileName = Storage::customerFolder(value).absoluteFilePath(QString("metadata.%1").arg(customer_suffix));
 
     QFile file(fileName);
     qDebug() << "Loading Customer Data:" << value;
