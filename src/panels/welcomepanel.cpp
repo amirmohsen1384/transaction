@@ -74,6 +74,7 @@ WelcomePanel::~WelcomePanel() {}
 void WelcomePanel::createCustomer()
 {
     UserEdit editor(this);
+    editor.setWindowTitle("Create an account");
     if(editor.exec() == QDialog::Accepted)
     {
         Customer customer;

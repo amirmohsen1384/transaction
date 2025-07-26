@@ -24,7 +24,14 @@ void CustomerPanel::updatePanel()
 
 void CustomerPanel::changeAccount()
 {
+    Customer data = model.headerData(0, Qt::Horizontal, Qt::DisplayRole).value<Customer>();
     UserEdit editor(this);
+    editor.setWindowTitle("Edit the account");
+    editor.setFirstName(data.getFirstName());
+    editor.setLastName(data.getLastName());
+    editor.setNationalCode(data.getNationalCode());
+    editor.setUserName(data.getUserName());
+    editor.setPassword(data.getPassword());
     if(editor.exec() == QDialog::Accepted)
     {
         Customer data;
