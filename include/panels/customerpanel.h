@@ -13,6 +13,7 @@ class CustomerPanel : public QMainWindow
     Q_OBJECT
 private slots:
     void updatePanel();
+    void changeAccount();
     void viewAccount(const QModelIndex &index);
 
 public:

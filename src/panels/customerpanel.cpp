@@ -2,6 +2,7 @@
 #include "include/dialogs/transferpanel.h"
 #include "include/panels/customerpanel.h"
 #include "include/dialogs/accountview.h"
+#include "include/dialogs/useredit.h"
 #include "ui_customerpanel.h"
 #include <QMessageBox>
 
@@ -19,6 +20,24 @@ void CustomerPanel::updatePanel()
     const auto name = model.headerData(Qt::UserRole).value<Customer>().getName();
     ui->title->setText(QString("Welcome back, %1!").arg(name));
     setWindowTitle(QString("%1 - Customer Panel").arg(name));
+}
+
+void CustomerPanel::changeAccount()
+{
+    UserEdit editor(this);
+    if(editor.exec() == QDialog::Accepted)
+    {
+        Customer data;
+        data.setNationalCode(editor.getNationalCode());
+        data.setFirstName(editor.getFirstName());
+        data.setLastName(editor.getLastName());
+        data.setUserName(editor.getUserName());
+        data.setPassword(editor.getPassword());
+        data.setAge(editor.getAge());
+
+        model.setHeaderData(0, Qt::Horizontal, QVariant::fromValue(data), Qt::DisplayRole);
+        updatePanel();
+    }
 }
 
 void CustomerPanel::viewAccount(const QModelIndex &index)
