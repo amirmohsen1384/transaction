@@ -65,10 +65,12 @@ void TransferPanel::saveResult()
 
 QString TransferPanel::browseImage()
 {
+    QStringList container;
     QFileDialog dialog(this);
-    dialog.setWindowTitle("Select a location to continue");
-    dialog.setAcceptMode(QFileDialog::AcceptSave);
     dialog.setDirectory(QDir::home());
+    dialog.setAcceptMode(QFileDialog::AcceptSave);
+    dialog.setWindowTitle("Select a location to continue");
+    dialog.setNameFilters({"JPG Files (*.jpg)", "JPEG Files (*.jpeg)", "PNG Files (*.png)", "BMP Files (*.bmp)"});
     if(dialog.exec() == QFileDialog::Accepted)
     {
         return dialog.selectedFiles().at(0);
