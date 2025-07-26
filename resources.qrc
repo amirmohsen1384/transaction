@@ -10,5 +10,8 @@
         <file>images/widgets/reject.png</file>
         <file>images/panels/password.png</file>
         <file>images/panels/cash.png</file>
+        <file>images/panels/logo.png</file>
+        <file>icon.ico</file>
+        <file>images/panels/login.png</file>
     </qresource>
 </RCC>
