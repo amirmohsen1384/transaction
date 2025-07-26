@@ -1,12 +1,29 @@
 #include <QApplication>
+#include "include/users/admin.h"
+#include "include/panels/adminpanel.h"
 #include "include/panels/welcomepanel.h"
 #include "include/panels/customerpanel.h"
+
+void adminFiles()
+{
+    Admin file;
+    file.setFirstName("Amir Mohsen");
+    file.setLastName("Ghasemi");
+    file.setNationalCode("1100619720");
+    file.setUserName("amir@1384");
+    file.setPassword("password");
+    file.setAge(19);
+
+    auto key = Admin::generateID();
+    file.saveToRecord(key);
+}
 
 int main(int argc, char **argv)
 {
     QApplication app(argc, argv);
 
     std::unique_ptr<QMainWindow> window;
+    adminFiles();
 
     const auto &depositList = Storage::depositAccount().entryInfoList
     (
@@ -64,7 +81,8 @@ int main(int argc, char **argv)
 
     QObject::connect(&panel, &WelcomePanel::adminLoggedIn, [&](const Key &id)
         {
-
+            window = std::make_unique<AdminPanel>(id);
+            window->show();
         }
     );
     QObject::connect(&panel, &WelcomePanel::customerLoggedIn, [&](const Key &id)
