@@ -2,6 +2,7 @@
 #define WELCOMEPANEL_H
 
 #include <QDialog>
+#include "include/general.h"
 
 namespace Ui {
 class WelcomePanel;
