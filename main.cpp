@@ -11,12 +11,16 @@ int main(int argc, char **argv)
     WelcomePanel panel;
     panel.open();
 
-    connect(&panel, &WelcomePanel::adminLoggedIn, this, [&](const Key &id)
+    Customer cs = Customer::loadFromRecord(2133788);
+    qDebug() << cs.getUserName();
+    qDebug() << cs.getPassword();
+
+    QObject::connect(&panel, &WelcomePanel::adminLoggedIn, [&](const Key &id)
         {
 
         }
     );
-    connect(&panel, &WelcomePanel::customerLoggedIn, this, [&](const Key &id)
+    QObject::connect(&panel, &WelcomePanel::customerLoggedIn, [&](const Key &id)
         {
             window = std::make_unique<CustomerPanel>(id);
             window->show();
