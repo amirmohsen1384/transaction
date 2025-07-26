@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>710</width>
-    <height>814</height>
+    <width>716</width>
+    <height>674</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -157,29 +157,15 @@
         </property>
        </widget>
       </item>
-      <item row="3" column="1" rowspan="2">
-       <widget class="QLineEdit" name="shabaNumberEdit"/>
-      </item>
-      <item row="3" column="0" rowspan="2">
-       <widget class="QLabel" name="shabaNumberPrefixLabel">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="font">
-         <font>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="text">
-         <string>IR</string>
-        </property>
-       </widget>
-      </item>
       <item row="1" column="0" colspan="2">
        <widget class="QLineEdit" name="cardNumberEdit"/>
+      </item>
+      <item row="3" column="0" rowspan="2" colspan="2">
+       <widget class="QLineEdit" name="shabaNumberEdit">
+        <property name="inputMask">
+         <string>IR999999999999999999999999</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
@@ -269,7 +255,7 @@
      <property name="title">
       <string>Password</string>
      </property>
-     <layout class="QGridLayout" name="passwordLayout">
+     <layout class="QGridLayout" name="gridLayout">
       <property name="leftMargin">
        <number>10</number>
       </property>
@@ -282,9 +268,6 @@
       <property name="bottomMargin">
        <number>10</number>
       </property>
-      <item row="1" column="0">
-       <widget class="PasswordEdit" name="primaryPasswordEdit" native="true"/>
-      </item>
       <item row="0" column="0">
        <widget class="QLabel" name="primaryPasswordLabel">
         <property name="font">
@@ -295,9 +278,22 @@
         <property name="text">
          <string>Primary Password:</string>
         </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+        </property>
        </widget>
       </item>
-      <item row="2" column="0">
+      <item row="0" column="1">
+       <widget class="PasswordEdit" name="primaryPasswordEdit" native="true">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
        <widget class="QLabel" name="secondaryPasswordLabel">
         <property name="font">
          <font>
@@ -307,10 +303,20 @@
         <property name="text">
          <string>Secondary Password:</string>
         </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+        </property>
        </widget>
       </item>
-      <item row="3" column="0">
-       <widget class="PasswordEdit" name="secondaryPasswordEdit" native="true"/>
+      <item row="1" column="1">
+       <widget class="PasswordEdit" name="secondaryPasswordEdit" native="true">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
