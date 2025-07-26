@@ -1,4 +1,5 @@
 #include "include/panels/welcomepanel.h"
+#include "include/dialogs/useredit.h"
 #include "include/users/customer.h"
 #include "include/users/admin.h"
 #include "include/users/user.h"
@@ -69,3 +70,20 @@ WelcomePanel::WelcomePanel(QWidget *parent) : QDialog(parent)
 }
 
 WelcomePanel::~WelcomePanel() {}
+
+void WelcomePanel::createCustomer()
+{
+    UserEdit editor(this);
+    if(editor.exec() == QDialog::Accepted)
+    {
+        Customer customer;
+        customer.setFirstName(editor.getFirstName());
+        customer.setLastName(editor.getLastName());
+        customer.setNationalCode(editor.getNationalCode());
+        customer.setUserName(editor.getUserName());
+        customer.setPassword(editor.getPassword());
+
+        auto key = Customer::generateID();
+        customer.saveToRecord(key);
+    }
+}

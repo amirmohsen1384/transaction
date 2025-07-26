@@ -297,8 +297,25 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>commandLinkButton</sender>
+   <signal>clicked()</signal>
+   <receiver>WelcomePanel</receiver>
+   <slot>createCustomer()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>308</x>
+     <y>432</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>123</x>
+     <y>628</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>login()</slot>
+  <slot>createCustomer()</slot>
  </slots>
 </ui>

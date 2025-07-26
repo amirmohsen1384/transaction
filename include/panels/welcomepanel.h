@@ -18,6 +18,9 @@ public:
     explicit WelcomePanel(QWidget *parent = nullptr);
     ~WelcomePanel();
 
+public slots:
+    void createCustomer();
+
 signals:
     void adminLoggedIn(const Key &id);
     void customerLoggedIn(const Key &id);
