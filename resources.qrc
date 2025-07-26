@@ -13,5 +13,6 @@
         <file>images/panels/logo.png</file>
         <file>icon.ico</file>
         <file>images/panels/login.png</file>
+        <file>images/panels/user.png</file>
     </qresource>
 </RCC>
