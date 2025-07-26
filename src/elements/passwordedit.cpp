@@ -19,6 +19,8 @@ PasswordEdit::PasswordEdit(QWidget *parent) : QWidget(parent)
     layout->addWidget(editor);
     layout->addWidget(toggleButton);
     updateIcon();
+
+    setFocusProxy(editor);
 }
 
 bool PasswordEdit::hasFrame() const
@@ -34,6 +36,11 @@ bool PasswordEdit::isReadOnly() const
 QString PasswordEdit::password() const
 {
     return editor->text();
+}
+
+QSize PasswordEdit::sizeHint() const
+{
+    return editor->sizeHint();
 }
 
 void PasswordEdit::setFrame(bool value)

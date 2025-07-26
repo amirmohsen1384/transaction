@@ -15,6 +15,8 @@ public:
     bool isReadOnly() const;
     QString password() const;
 
+    virtual QSize sizeHint() const;
+
 public slots:
     void setFrame(bool value);
     void setReadOnly(bool value);
