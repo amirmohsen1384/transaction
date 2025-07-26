@@ -378,9 +378,11 @@ void CashTransaction::transfer()
 
     }
 
-    source->setTransferredBalance(source->getTransferredBalance() + this->amount);
     destination->setBalance(destination->getBalance() + this->amount);
     source->setBalance(source->getBalance() - final);
+
+    source->setTransferredBalance(source->getTransferredBalance() + this->amount);
+    source->setLastCashMoved(QDateTime::currentDateTime());
 
     destination->saveToRecord(destinationId);
     source->saveToRecord(sourceId);
