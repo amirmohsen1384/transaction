@@ -212,7 +212,11 @@
        </widget>
       </item>
       <item row="3" column="0">
-       <widget class="QLineEdit" name="nationalCodeEdit"/>
+       <widget class="QLineEdit" name="nationalCodeEdit">
+        <property name="inputMask">
+         <string>9999999999</string>
+        </property>
+       </widget>
       </item>
       <item row="4" column="1">
        <widget class="QLabel" name="passwordLabel">
