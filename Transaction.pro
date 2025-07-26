@@ -1,11 +1,11 @@
 QT += gui
 QT += core
-QT += printsupport
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++17
 
 HEADERS += \
+    include/core/datalist.hpp \
     include/dialogs/accounteditor.h \
     include/dialogs/accountpasswordeditor.h \
     include/models/customermodel.h \
@@ -26,7 +26,8 @@ HEADERS += \
     include/users/customer.h \
     include/users/user.h \
     include/dialogs/transferpanel.h \
-    include/dialogs/useredit.h
+    include/dialogs/useredit.h \
+    include/panels/welcomepanel.h
 
 
 SOURCES += \
@@ -50,7 +51,8 @@ SOURCES += \
     src/users/customer.cpp \
     src/users/user.cpp \
     src/dialogs/transferpanel.cpp \
-    src/dialogs/useredit.cpp
+    src/dialogs/useredit.cpp \
+    src/panels/welcomepanel.cpp
 
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
@@ -62,7 +64,8 @@ FORMS += \
     ui/dialogs/accountview.ui \
     ui/panels/customerpanel.ui \
     ui/dialogs/transferpanel.ui \
-    ui/dialogs/useredit.ui
+    ui/dialogs/useredit.ui \
+    ui/panels/welcomepanel.ui
 
 RESOURCES += \
     resources.qrc
