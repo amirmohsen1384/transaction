@@ -387,4 +387,5 @@ void CashTransaction::transfer()
 
     eventDateTime = QDateTime::currentDateTime();
     setStatus(CashTransaction::Successful);
+    qDebug() << "Transaction Completed";
 }
