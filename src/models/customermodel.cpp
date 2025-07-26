@@ -82,6 +82,20 @@ QVariant CustomerModel::data(const QModelIndex &index, int role) const
     }
 }
 
+bool CustomerModel::setHeaderData(int section, Qt::Orientation orientation, const QVariant &value, int role)
+{
+    Q_UNUSED(role)
+    Q_UNUSED(section)
+    Q_UNUSED(orientation)
+    if(!value.canConvert<Customer>())
+    {
+        return false;
+    }
+    metadata = value.value<Customer>();
+    metadata.saveToRecord(identifier);
+    return true;
+}
+
 QVariant CustomerModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
     Q_UNUSED(role)

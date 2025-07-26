@@ -18,13 +18,13 @@ public:
         Key identifier;
         std::shared_ptr<AbstractAccount> data;
     };
-
 public:
     explicit CustomerModel(QObject *parent = nullptr);
     explicit CustomerModel(const Key &identifier, QObject *parent = nullptr);
 
     virtual int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
+    virtual bool setHeaderData(int section, Qt::Orientation orientation, const QVariant &value, int role) override;
     virtual QVariant headerData(int section = 0, Qt::Orientation orientation = Qt::Horizontal, int role = Qt::UserRole) const override;
 
 public:
