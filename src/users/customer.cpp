@@ -74,7 +74,7 @@ KeyList Customer::loadKeysFromRecord(Key value)
     }
 }
 
-void Customer::saveKeysToRecord(Key value, const KeyList &data) const
+void Customer::saveKeysToRecord(Key value, const KeyList &data)
 {
     if(!Identifier::isValid(value))
     {

@@ -16,7 +16,7 @@ public:
     virtual void saveToRecord(quint64 value) const override;
 
     static KeyList loadKeysFromRecord(Key value);
-    virtual void saveKeysToRecord(Key value, const KeyList &data) const;
+    static void saveKeysToRecord(Key value, const KeyList &data);
 };
 
 #endif // CUSTOMER_H
